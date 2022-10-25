@@ -1,9 +1,14 @@
-import './App.css';
-import MyNavBar from "./components/Navbar";
+import MyNavBar from './components/Navbar';
+import ItemListContainer from './components/ItemListContainer';
+import Footer from './components/Footer';
 
 function App() {
   return (
-    <MyNavBar/>
+    <>
+      <MyNavBar />
+      <ItemListContainer greeting="Welcome to LTP Game Asset Store!" />
+      <Footer />
+    </>
   );
 }
 
