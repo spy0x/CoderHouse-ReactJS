@@ -1,23 +1,22 @@
-import React from 'react';
-import { useState } from 'react';
-import AppBar from '@mui/material/AppBar';
-import Box from '@mui/material/Box';
-import Toolbar from '@mui/material/Toolbar';
-import IconButton from '@mui/material/IconButton';
-import Typography from '@mui/material/Typography';
-import Menu from '@mui/material/Menu';
-import MenuIcon from '@mui/icons-material/Menu';
-import Container from '@mui/material/Container';
-import Button from '@mui/material/Button';
-import MenuItem from '@mui/material/MenuItem';
+import React, { useState } from "react";
+import AppBar from "@mui/material/AppBar";
+import Box from "@mui/material/Box";
+import Toolbar from "@mui/material/Toolbar";
+import IconButton from "@mui/material/IconButton";
+import Typography from "@mui/material/Typography";
+import Menu from "@mui/material/Menu";
+import MenuIcon from "@mui/icons-material/Menu";
+import Container from "@mui/material/Container";
+import Button from "@mui/material/Button";
+import MenuItem from "@mui/material/MenuItem";
 
-import logo from '../assets/img/navbar_logo.png';
-import { grey } from '@mui/material/colors';
-import CartWidget from './CartWidget';
+import logo from "../assets/img/navbar_logo.png";
+import { grey } from "@mui/material/colors";
+import CartWidget from "./CartWidget";
 
 const navBarBackground = grey[900];
-const pages = ['Store', 'About', 'Contact'];
-
+const pages = ["Store", "About", "Contact"];
+  
 function MyNavBar() {
   const [anchorElNav, setAnchorElNav] = useState(null);
 
@@ -33,12 +32,12 @@ function MyNavBar() {
     <AppBar position="static" sx={{ backgroundColor: `${navBarBackground}`, padding: 2 }}>
       <Container maxWidth="xl">
         <Toolbar disableGutters>
-          <Box sx={{ display: { xs: 'none', md: 'flex' }, mr: 5 }}>
+          <Box sx={{ display: { xs: "none", md: "flex" }, mr: 5 }}>
             <a href="./">
               <img src={logo} alt="Logo" height="50" />
             </a>
           </Box>
-          <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
+          <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
             <IconButton
               size="large"
               aria-label="account of current user"
@@ -53,18 +52,18 @@ function MyNavBar() {
               id="menu-appbar"
               anchorEl={anchorElNav}
               anchorOrigin={{
-                vertical: 'bottom',
-                horizontal: 'left',
+                vertical: "bottom",
+                horizontal: "left",
               }}
               keepMounted
               transformOrigin={{
-                vertical: 'top',
-                horizontal: 'left',
+                vertical: "top",
+                horizontal: "left",
               }}
               open={Boolean(anchorElNav)}
               onClose={handleCloseNavMenu}
               sx={{
-                display: { xs: 'block', md: 'none' },
+                display: { xs: "block", md: "none" },
               }}
             >
               {pages.map((page) => (
@@ -74,14 +73,14 @@ function MyNavBar() {
               ))}
             </Menu>
           </Box>
-          <Box sx={{ display: { xs: 'flex', md: 'none' }, flexGrow: 1 }}>
+          <Box sx={{ display: { xs: "flex", md: "none" }, flexGrow: 1 }}>
             <a href="./">
               <img src={logo} alt="Logo" height="50" />
             </a>
           </Box>
-          <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
+          <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
             {pages.map((page) => (
-              <Button key={page} onClick={handleCloseNavMenu} sx={{ my: 2, color: 'white', display: 'block' }}>
+              <Button key={page} onClick={handleCloseNavMenu} sx={{ my: 2, color: "white", display: "block" }}>
                 {page}
               </Button>
             ))}
