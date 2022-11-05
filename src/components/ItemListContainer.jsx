@@ -1,8 +1,8 @@
 import { Grid, Paper, Typography } from "@mui/material";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import ItemList from "./ItemList";
 
-const products = [
+const productsDB = [
   {
     isbn: 9789569673245,
     title: "Decadencia de Tokio",
@@ -45,13 +45,34 @@ const products = [
 ];
 
 export default function ItemListContainer({ greeting }) {
+  const [products, setProducts] = useState([]);
+
+  //Simulating Server Delay Loading
+  useEffect(() => {
+    async function delayTest()
+    {
+      const productsDelay = await new Promise((res, rej) => {
+        setTimeout(() => {
+          res(productsDB);
+        }, 2000);
+      });
+      setProducts(productsDelay);
+    }
+    delayTest();
+  }, []);
+
   return (
     <Grid container spacing={2} justifyContent="center" my={2} alignItems="center" mb={10}>
       <Grid item xs={11} xl={10}>
         <Paper elevation={4} sx={{ bgcolor: "whitesmoke", padding: "16px" }}>
-          <Typography variant="h1" color="initial" align='center' sx={{fontWeight: 'bold', fontSize: "2.5rem"}}>
-            Our Bookstore
+          <Typography variant="h1" color="initial" align="center" sx={{ fontWeight: "bold", fontSize: "2.5rem" }}>
+            {greeting}
           </Typography>
+          {!products.length && (
+            <Typography variant="body1" color="initial" align="center">
+              "Loading..."
+            </Typography>
+          )}
           <ItemList products={products} />
         </Paper>
       </Grid>

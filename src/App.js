@@ -6,7 +6,7 @@ function App() {
   return (
     <>
       <MyNavBar />
-      <ItemListContainer greeting="Welcome to LTP Game Asset Store!" style={{marginButton: '150px'}}/>
+      <ItemListContainer greeting="Welcome to our Bookstore" style={{marginButton: '150px'}}/>
       <Footer />
     </>
   );
