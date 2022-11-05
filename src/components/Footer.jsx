@@ -1,6 +1,6 @@
-import React from "react";
-import { AppBar, BottomNavigation, Stack, Typography } from "@mui/material";
+import { AppBar, Stack, Typography } from "@mui/material";
 import { grey } from "@mui/material/colors";
+import React from "react";
 
 const navBarBackground = grey[900];
 

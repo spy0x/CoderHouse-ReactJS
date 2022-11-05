@@ -1,29 +1,42 @@
 import React from "react";
-import Box from '@mui/material/Box';
-import TextField from '@mui/material/TextField';
+import Box from "@mui/material/Box";
+import TextField from "@mui/material/TextField";
 
 export default function ItemCount() {
-    return (
-        <Box
-          component="form"
-          sx={{
-            '& .MuiTextField-root': { m: 1, width: '25ch' },
-            textAlign: 'center' 
+  const stock = 25;
+  function changeQuantity(e){
+    if(e.target.value > stock) 
+    e.target.value = stock;
+    else if(e.target.value < 0)
+    e.target.value = 0;
+  }
+  return (
+    <Box
+      component="form"
+      sx={{
+        "& .MuiTextField-root": { m: 1, width: "25ch" },
+        textAlign: "center",
+      }}
+      noValidate
+      autoComplete="off"
+    >
+      <div>
+        <TextField
+          id="outlined-number"
+          label="Quantity"
+          type="number"
+          InputLabelProps={{
+            shrink: true,
           }}
-          noValidate
-          autoComplete="off"
-        >
-          <div>
-            <TextField
-              id="outlined-number"
-              label="Quantity"
-              type="number"
-              InputLabelProps={{
-                shrink: true,
-              }}
-              onChange= {() => { console.log("funciona")}}
-            />
-          </div>
-        </Box>
-      );
+          InputProps={{
+            inputProps: {
+              max: stock,
+              min: 0,
+            },
+          }}
+          onChange={(e) => changeQuantity(e)}
+        />
+      </div>
+    </Box>
+  );
 }
