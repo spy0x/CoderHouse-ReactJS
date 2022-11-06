@@ -1,4 +1,4 @@
-import { Grid, Paper, Stack, Typography } from "@mui/material";
+import { Grid, Paper, Typography } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import ItemList from "./ItemList";
 import Loader from "./Loader";

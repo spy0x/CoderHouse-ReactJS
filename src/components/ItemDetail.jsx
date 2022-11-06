@@ -1,21 +1,24 @@
-import { Box, Typography, Stack } from "@mui/material";
-import React, {useState, useEffect} from "react";
+import { Box, Typography, CardMedia } from "@mui/material";
+import React, { useEffect, useState } from "react";
 import Loader from "./Loader";
+import TableItemSpecs from "./TableItemSpecs";
 
-const style = {
+const boxStyle = {
   position: "absolute",
   top: "50%",
   left: "50%",
   transform: "translate(-50%, -50%)",
-  width: 400,
+  width: {xs:"50%", sm:"25%"},
+  height: "80%",
   bgcolor: "background.paper",
   border: "2px solid #000",
   boxShadow: 24,
   p: 4,
 };
 
-export default function ItemDetail(product) {
+export default function ItemDetail({ product }) {
   const [item, setItem] = useState([]);
+  const [content, setContent] = useState([]);
 
   //Simulating Server Delay Loading
   useEffect(() => {
@@ -26,22 +29,37 @@ export default function ItemDetail(product) {
         }, 2000);
       });
       setItem(itemDelay);
+      for (const key in itemDelay.specifications) {
+        content.push(
+          <Typography key={key} id="modal-modal-description" sx={{ mt: 2 }}>
+            {itemDelay.specifications[key]}
+          </Typography>
+        );
+      }
+      setContent(content);
     }
     delayTest();
   }, []);
 
   return (
-    <Box sx={style}>
+    <Box sx={boxStyle}>
       {item.length < 1 ? (
-        <Loader/>
+        <Loader />
       ) : (
         <>
-          <Typography id="modal-modal-title" variant="h6" component="h2">
-            Text in a modal
-          </Typography>
-          <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-            Duis mollis, est non commodo luctus, nisi erat porttitor ligula.
-          </Typography>
+          <CardMedia
+            component="img"
+            sx={{
+              width: "100%",
+              maxHeight: "75%",
+              objectFit: "contain",
+            //   maxHeight: { xs: 233, md: 167 },
+            //   maxWidth: { xs: 350, md: 250 },
+            }}
+            src={item.img}
+          />
+          {/* {content} */}
+          <TableItemSpecs/>
         </>
       )}
     </Box>
