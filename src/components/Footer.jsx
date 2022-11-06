@@ -17,7 +17,7 @@ export default function Footer() {
       }}
     >
       <Stack direction="row" justifyContent="center" alignItems="center" spacing={2}>
-        <Typography variant="subtitle2">© LTP - LOS TRES PRIMOS GAME STUDIO</Typography>
+        <Typography variant="subtitle2">© LTP - LOS TRES PRIMOS BOOKSTORE</Typography>
       </Stack>
     </AppBar>
   );
