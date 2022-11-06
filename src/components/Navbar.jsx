@@ -1,22 +1,29 @@
-import React, { useState } from "react";
+import MenuIcon from "@mui/icons-material/Menu";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
-import Toolbar from "@mui/material/Toolbar";
-import IconButton from "@mui/material/IconButton";
-import Typography from "@mui/material/Typography";
-import Menu from "@mui/material/Menu";
-import MenuIcon from "@mui/icons-material/Menu";
-import Container from "@mui/material/Container";
 import Button from "@mui/material/Button";
+import Container from "@mui/material/Container";
+import IconButton from "@mui/material/IconButton";
+import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
+import Toolbar from "@mui/material/Toolbar";
+import Typography from "@mui/material/Typography";
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
 
-import logo from "../assets/img/navbar_logo.png";
 import { grey } from "@mui/material/colors";
+import logo from "../assets/img/navbar_logo.png";
 import CartWidget from "./CartWidget";
 
 const navBarBackground = grey[900];
-const pages = ["Store", "About", "Contact"];
-  
+const pages = [
+  { name: "Store", url: "/" },
+  { name: "NEW", url: "books/new" },
+  { name: "TOP", url: "books/top" },
+  { name: "Sample Author", url: "books/author/Juza_Unno" },
+  { name: "Sample Book", url: "books/9789569673245" },
+];
+
 function MyNavBar() {
   const [anchorElNav, setAnchorElNav] = useState(null);
 
@@ -33,9 +40,9 @@ function MyNavBar() {
       <Container maxWidth="xl">
         <Toolbar disableGutters>
           <Box sx={{ display: { xs: "none", md: "flex" }, mr: 5 }}>
-            <a href="./">
+            <Link to="/">
               <img src={logo} alt="Logo" height="50" />
-            </a>
+            </Link>
           </Box>
           <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
             <IconButton
@@ -66,9 +73,11 @@ function MyNavBar() {
                 display: { xs: "block", md: "none" },
               }}
             >
-              {pages.map((page) => (
-                <MenuItem key={page} onClick={handleCloseNavMenu}>
-                  <Typography textAlign="center">{page}</Typography>
+              {pages.map((page, id) => (
+                <MenuItem key={id}>
+                  <Link to={page.url} style={{ textDecoration: "none" }}>
+                    <Typography textAlign="center">{page.name}</Typography>
+                  </Link>
                 </MenuItem>
               ))}
             </Menu>
@@ -79,9 +88,11 @@ function MyNavBar() {
             </a>
           </Box>
           <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
-            {pages.map((page) => (
-              <Button key={page} onClick={handleCloseNavMenu} sx={{ my: 2, color: "white", display: "block" }}>
-                {page}
+            {pages.map((page, id) => (
+              <Button key={id} sx={{ my: 2, color: "white", display: "block" }}>
+                <Link to={page.url} style={{ textDecoration: "none", color: "whitesmoke" }}>
+                  {page.name}
+                </Link>
               </Button>
             ))}
           </Box>
