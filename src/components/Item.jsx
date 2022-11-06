@@ -28,7 +28,7 @@ export default function Item({ product }) {
         </CardContent>
         <Stack direction="row" justifyContent="space-between" mx={4} alignItems="center" spacing={2}>
           <ItemCount stock={product.stock} />
-          <Button size="small">Add to Cart</Button>
+          <Button size="small" sx={{padding: "1rem"}}>Add to Cart</Button>
         </Stack>
       </Stack>
     </Card>
