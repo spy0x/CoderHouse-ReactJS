@@ -1,4 +1,4 @@
-import { Box, Typography, CardMedia } from "@mui/material";
+import { Box, CardMedia } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import Loader from "./Loader";
 import TableItemSpecs from "./TableItemSpecs";
@@ -8,7 +8,7 @@ const boxStyle = {
   top: "50%",
   left: "50%",
   transform: "translate(-50%, -50%)",
-  width: {xs:"50%", sm:"25%"},
+  width: { xs: "60%", md: "25%" },
   height: "80%",
   bgcolor: "background.paper",
   border: "2px solid #000",
@@ -18,7 +18,6 @@ const boxStyle = {
 
 export default function ItemDetail({ product }) {
   const [item, setItem] = useState([]);
-  const [content, setContent] = useState([]);
 
   //Simulating Server Delay Loading
   useEffect(() => {
@@ -29,17 +28,9 @@ export default function ItemDetail({ product }) {
         }, 2000);
       });
       setItem(itemDelay);
-      for (const key in itemDelay.specifications) {
-        content.push(
-          <Typography key={key} id="modal-modal-description" sx={{ mt: 2 }}>
-            {itemDelay.specifications[key]}
-          </Typography>
-        );
-      }
-      setContent(content);
     }
     delayTest();
-  }, []);
+  }, );
 
   return (
     <Box sx={boxStyle}>
@@ -51,15 +42,12 @@ export default function ItemDetail({ product }) {
             component="img"
             sx={{
               width: "100%",
-              maxHeight: "75%",
+              maxHeight: "70%",
               objectFit: "contain",
-            //   maxHeight: { xs: 233, md: 167 },
-            //   maxWidth: { xs: 350, md: 250 },
             }}
             src={item.img}
           />
-          {/* {content} */}
-          <TableItemSpecs/>
+          <TableItemSpecs itemSpecs={item.specifications} />
         </>
       )}
     </Box>

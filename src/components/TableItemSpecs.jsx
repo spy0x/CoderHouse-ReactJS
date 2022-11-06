@@ -1,44 +1,36 @@
-import * as React from "react";
+import Paper from "@mui/material/Paper";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
 import TableCell from "@mui/material/TableCell";
 import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
-import Paper from "@mui/material/Paper";
+import React from "react";
 
-function createData(name, calories, fat, carbs, protein) {
-  return { name, calories, fat, carbs, protein };
-}
-
-const rows = [
-  createData("Frozen yoghurt", 159, 6.0, 24, 4.0),
-  createData("Ice cream sandwich", 237, 9.0, 37, 4.3),
-  createData("Eclair", 262, 16.0, 24, 6.0),
-  createData("Cupcake", 305, 3.7, 67, 4.3),
-  createData("Gingerbread", 356, 16.0, 49, 3.9),
-];
-
-export default function TableItemSpecs() {
+export default function TableItemSpecs({ itemSpecs }) {
+  const { paperType, dimensions, pages } = itemSpecs;
   return (
-    <TableContainer component={Paper}>
-      <Table sx={{ minWidth: 650 }} size="small" aria-label="a dense table">
-        <TableHead>
-          <TableRow>
-            <TableCell>Dessert (100g serving)</TableCell>
-            <TableCell align="right">Calories</TableCell>
-            <TableCell align="right">Fat&nbsp;(g)</TableCell>
-            <TableCell align="right">Carbs&nbsp;(g)</TableCell>
-            <TableCell align="right">Protein&nbsp;(g)</TableCell>
-          </TableRow>
-        </TableHead>
+    <TableContainer component={Paper} sx={{ mt: 2 }}>
+      <Table size="small" aria-label="a dense table">
+        <TableHead></TableHead>
         <TableBody>
-          <TableRow sx={{ "&:last-child td, &:last-child th": { border: 0 } }}>
-            <TableCell variant="head" component="th" scope="row">works</TableCell>
-            <TableCell align="right">row.calories</TableCell>
-            <TableCell align="right">row.fat</TableCell>
-            <TableCell align="right">row.carbs</TableCell>
-            <TableCell align="right">row.protein</TableCell>
+          <TableRow>
+            <TableCell variant="head" component="th" scope="row">
+              Paper Type
+            </TableCell>
+            <TableCell align="right">{paperType}</TableCell>
+          </TableRow>
+          <TableRow>
+            <TableCell variant="head" component="th" scope="row">
+              Dimensions
+            </TableCell>
+            <TableCell align="right">{dimensions}</TableCell>
+          </TableRow>
+          <TableRow>
+            <TableCell variant="head" component="th" scope="row">
+              Pages
+            </TableCell>
+            <TableCell align="right">{pages}</TableCell>
           </TableRow>
         </TableBody>
       </Table>

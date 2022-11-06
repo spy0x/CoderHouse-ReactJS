@@ -23,11 +23,14 @@ export default function Item({ product }) {
           <Typography gutterBottom variant="h5" component="div" align="center">
             {product.title}
           </Typography>
+        </CardContent>
+        <Stack direction="column">
           <Typography variant="body2" color="text.secondary" align="center">
             {product.author}
           </Typography>
-        </CardContent>
-        <Stack direction="column">
+          <Typography mt={2} display="block" variant="h6" color="text.secondary" align="center" gutterBottom>
+            ${product.price} USD
+          </Typography>
           <ItemDetailContainer product={product} />
           <Divider variant="middle" />
           <Stack direction="row" justifyContent="space-between" mx={4} my={1} alignItems="center" spacing={2}>
