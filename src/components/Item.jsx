@@ -6,6 +6,7 @@ import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
 import React from "react";
 import ItemCount from "./ItemCount";
+import ItemDetailContainer from "./ItemDetailContainer";
 
 export default function Item({ product }) {
   return (
@@ -27,15 +28,7 @@ export default function Item({ product }) {
           </Typography>
         </CardContent>
         <Stack direction="column">
-          <Button
-            variant="contained"
-            color="error"
-            size="medium"
-            href="#contained-buttons"
-            sx={{ marginX: "4rem", marginBottom: "1rem", textAlign: "center" }}
-          >
-            View Details
-          </Button>
+          <ItemDetailContainer product={product} />
           <Divider variant="middle" />
           <Stack direction="row" justifyContent="space-between" mx={4} my={1} alignItems="center" spacing={2}>
             <ItemCount stock={product.stock} />

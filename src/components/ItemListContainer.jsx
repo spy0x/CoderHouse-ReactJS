@@ -1,6 +1,7 @@
-import { Grid, Paper, Typography } from "@mui/material";
+import { Grid, Paper, Stack, Typography } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import ItemList from "./ItemList";
+import Loader from "./Loader";
 
 const productsDB = [
   {
@@ -49,8 +50,7 @@ export default function ItemListContainer({ greeting }) {
 
   //Simulating Server Delay Loading
   useEffect(() => {
-    async function delayTest()
-    {
+    async function delayTest() {
       const productsDelay = await new Promise((res, rej) => {
         setTimeout(() => {
           res(productsDB);
@@ -69,9 +69,7 @@ export default function ItemListContainer({ greeting }) {
             {greeting}
           </Typography>
           {!products.length && (
-            <Typography variant="body1" color="initial" align="center">
-              "Loading..."
-            </Typography>
+            <Loader/>
           )}
           <ItemList products={products} />
         </Paper>
