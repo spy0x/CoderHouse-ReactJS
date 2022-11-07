@@ -16,40 +16,20 @@ const boxStyle = {
   p: 4,
 };
 
-export default function ItemDetail({ product }) {
-  const [item, setItem] = useState([]);
-
-  //Simulating Server Delay Loading
-  useEffect(() => {
-    async function delayTest() {
-      const itemDelay = await new Promise((res, rej) => {
-        setTimeout(() => {
-          res(product);
-        }, 2000);
-      });
-      setItem(itemDelay);
-    }
-    delayTest();
-  }, );
-
+export default function ItemDetail({ item }) {
+  console.log(item)
   return (
-    <Box sx={boxStyle}>
-      {item.length < 1 ? (
-        <Loader />
-      ) : (
-        <>
-          <CardMedia
-            component="img"
-            sx={{
-              width: "100%",
-              maxHeight: "70%",
-              objectFit: "contain",
-            }}
-            src={item.img}
-          />
-          <TableItemSpecs itemSpecs={item.specifications} />
-        </>
-      )}
-    </Box>
+    <>
+    <CardMedia
+      component="img"
+      sx={{
+        width: "100%",
+        maxHeight: "70%",
+        objectFit: "contain",
+      }}
+      src={item.img}
+    />
+    {/* <TableItemSpecs itemSpecs={item.specifications} /> */}
+    </>
   );
 }
