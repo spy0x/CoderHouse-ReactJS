@@ -18,10 +18,10 @@ import CartWidget from "./CartWidget";
 const navBarBackground = grey[900];
 const pages = [
   { name: "Store", url: "/" },
-  { name: "NEW", url: "books/new" },
-  { name: "TOP", url: "books/top" },
-  { name: "Sample Author", url: "books/author/Juza_Unno" },
-  { name: "Sample Book", url: "books/9789569673245" },
+  { name: "NEW", url: "/books/category/new" },
+  { name: "TOP", url: "/books/category/top" },
+  { name: "Sample Author", url: "/books/author/Juza_Unno" },
+  { name: "Sample Book", url: "/books/isbn/9789569673245" },
 ];
 
 function MyNavBar() {

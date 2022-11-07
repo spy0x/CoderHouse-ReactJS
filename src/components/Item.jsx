@@ -1,16 +1,15 @@
-import { Divider, Stack, Box} from "@mui/material";
+import { Divider, Stack } from "@mui/material";
 import Button from "@mui/material/Button";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
 import React from "react";
-import ItemCount from "./ItemCount";
 import { Link } from "react-router-dom";
-
+import ItemCount from "./ItemCount";
 
 export default function Item({ product }) {
-  const {author, img, title, price, isbn} = product;
+  const { author, img, title, price, isbn } = product;
   return (
     <Card sx={{ height: "100%" }}>
       <Stack direction="column" justifyContent="space-between" alignItems="stretch" spacing={0} sx={{ height: "100%" }}>
@@ -33,16 +32,18 @@ export default function Item({ product }) {
           <Typography mt={2} display="block" variant="h6" color="text.secondary" align="center" gutterBottom>
             ${price} USD
           </Typography>
-          <Link to={`books/${isbn}`} style={{ textDecoration: "none" }}>
-          <Button
-            variant="contained"
-            color="error"
-            size="medium"
-            sx={{ mx: 8, marginBottom: "1rem", textAlign: "center" }}
-          >
-            View Details
-          </Button>
-          </Link>
+          <Stack direction="row" justifyContent="center" alignItems="center" spacing={0}>
+            <Link to={`/books/isbn/${isbn}`} style={{ textDecoration: "none" }}>
+              <Button
+                variant="contained"
+                color="error"
+                size="medium"
+                sx={{ marginBottom: "1rem", textAlign: "center" }}
+              >
+                View Details
+              </Button>
+            </Link>
+          </Stack>
           <Divider variant="middle" />
           <Stack direction="row" justifyContent="space-between" mx={4} my={1} alignItems="center" spacing={2}>
             <ItemCount stock={product.stock} />
@@ -53,5 +54,5 @@ export default function Item({ product }) {
         </Stack>
       </Stack>
     </Card>
-  )
+  );
 }
