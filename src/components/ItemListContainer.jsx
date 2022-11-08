@@ -7,7 +7,7 @@ import Loader from "./Loader";
 export default function ItemListContainer({ greeting, category, productsDB }) {
   const [products, setProducts] = useState([]);
   const { author } = useParams();
-
+  const titlePage = author ? `${author.replace('_', ' ')}'s books` : greeting;
   //Simulating Server Delay Loading
   useEffect(() => {
     async function delayTest() {
@@ -37,7 +37,7 @@ export default function ItemListContainer({ greeting, category, productsDB }) {
       <Grid item xs={11} xl={10}>
         <Paper elevation={4} sx={{ bgcolor: "whitesmoke", padding: "16px" }}>
           <Typography variant="h1" color="initial" align="center" sx={{ fontWeight: "bold", fontSize: "2.5rem" }}>
-            {greeting}
+            {titlePage}
           </Typography>
           {!products.length && <Loader />}
           <ItemList products={products} />
