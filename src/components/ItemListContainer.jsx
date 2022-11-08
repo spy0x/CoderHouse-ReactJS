@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import ItemList from "./ItemList";
 import Loader from "./Loader";
+import ErrorPage from "./ErrorPage";
 
 export default function ItemListContainer({ greeting, category, productsDB }) {
   const [products, setProducts] = useState([]);
@@ -31,6 +32,9 @@ export default function ItemListContainer({ greeting, category, productsDB }) {
     }
     delayTest();
   }, [author, category, productsDB]);
+  if (author && !productsDB.some(element => element.author === author.replace('_', ' '))){
+    return <ErrorPage/>
+  }
 
   return (
     <Grid container spacing={2} justifyContent="center" my={2} alignItems="center" mb={10}>
