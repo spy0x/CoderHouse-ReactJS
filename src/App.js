@@ -50,6 +50,51 @@ const productsDB = [
     new: true,
     top: false,
   },
+  {
+    isbn: "9789569673184",
+    title: "El baño de música de las dieciocho",
+    author: "Juza Unno",
+    price: 13,
+    specifications: {
+      paperType: "Paperback",
+      dimensions: "12.5 x 18 cm.",
+      pages: 136,
+    },
+    img: "/static/images/products/9789569673184.webp",
+    stock: 11,
+    new: false,
+    top: false,
+  },
+  {
+    isbn: "9789569673191",
+    title: "Audición",
+    author: "Ryu Murakami",
+    price: 15,
+    specifications: {
+      paperType: "Paperback",
+      dimensions: "12.5 x 18 cm.",
+      pages: 240,
+    },
+    img: "/static/images/products/9789569673191.webp",
+    stock: 7,
+    new: false,
+    top: false,
+  },
+  {
+    isbn: "9789569673160",
+    title: "Fin del verano",
+    author: "Chika Sagawa",
+    price: 13,
+    specifications: {
+      paperType: "Paperback",
+      dimensions: "12.5 x 18 cm.",
+      pages: 164,
+    },
+    img: "/static/images/products/9789569673160.webp",
+    stock: 2,
+    new: false,
+    top: true,
+  },
 ];
 function App() {
   return (
@@ -60,7 +105,7 @@ function App() {
         <Route path="/books/isbn/:isbn" element={<ItemDetailContainer productsDB={productsDB} style={{marginButton: '150px'}}/>} />
         <Route path="/books/category/top" element={<ItemListContainer greeting="TOP BOOKS" productsDB={productsDB} category="top" style={{marginButton: '150px'}}/>} />
         <Route path="/books/category/new" element={<ItemListContainer greeting="NEW BOOKS" productsDB={productsDB} category="new" style={{marginButton: '150px'}}/>} />
-        <Route path="/books/author/:author" element={<ItemListContainer greeting="Author BOOKS" productsDB={productsDB} style={{marginButton: '150px'}}/>} />
+        <Route path="/books/author/:author" element={<ItemListContainer productsDB={productsDB} style={{marginButton: '150px'}}/>} />
       </Routes>
       <Footer />
     </BrowserRouter>
