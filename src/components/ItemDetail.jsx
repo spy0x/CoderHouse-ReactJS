@@ -13,7 +13,7 @@ const boxStyle = {
 };
 
 export default function ItemDetail({ item }) {
-  const { img, title, author, specifications, price, stock } = item;
+  const { img, title, author, specifications, price, stock, isbn } = item;
   return (
     <Box sx={boxStyle}>
       <Grid
@@ -45,7 +45,7 @@ export default function ItemDetail({ item }) {
                 {author}
               </Typography>
             </Box>
-            <TableItemSpecs itemSpecs={specifications} />
+            <TableItemSpecs itemSpecs={specifications} isbn={isbn} />
               <Typography mt={2} display="block" variant="h6" color="text.secondary" align="center" gutterBottom>
                 ${price} USD
               </Typography>

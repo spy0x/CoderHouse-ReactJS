@@ -7,7 +7,7 @@ import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import React from "react";
 
-export default function TableItemSpecs({ itemSpecs }) {
+export default function TableItemSpecs({ itemSpecs, isbn }) {
   const { paperType, dimensions, pages } = itemSpecs;
   return (
     <TableContainer component={Paper} sx={{ mt: 2 }}>
@@ -31,6 +31,12 @@ export default function TableItemSpecs({ itemSpecs }) {
               Pages
             </TableCell>
             <TableCell align="right">{pages}</TableCell>
+          </TableRow>
+          <TableRow>
+            <TableCell variant="head" component="th" scope="row">
+              ISBN
+            </TableCell>
+            <TableCell align="right">{isbn}</TableCell>
           </TableRow>
         </TableBody>
       </Table>
