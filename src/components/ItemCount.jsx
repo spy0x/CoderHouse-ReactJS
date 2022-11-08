@@ -9,7 +9,6 @@ export default function ItemCount({ stock }) {
   }
   return (
     <Box
-      // component="form"
       sx={{
         "& .MuiTextField-root": { m: 1, width: "8ch" },
         textAlign: "center",

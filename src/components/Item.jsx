@@ -9,7 +9,7 @@ import { Link } from "react-router-dom";
 import ItemCount from "./ItemCount";
 
 export default function Item({ product }) {
-  const { author, img, title, price, isbn } = product;
+  const { author, img, title, price, isbn, stock } = product;
   return (
     <Card sx={{ height: "100%" }}>
       <Stack direction="column" justifyContent="space-between" alignItems="stretch" spacing={0} sx={{ height: "100%" }}>
@@ -46,7 +46,7 @@ export default function Item({ product }) {
           </Stack>
           <Divider variant="middle" />
           <Stack direction="row" justifyContent="space-between" mx={4} my={1} alignItems="center" spacing={2}>
-            <ItemCount stock={product.stock} />
+            <ItemCount stock={stock} />
             <Button size="small" sx={{ padding: "1rem" }}>
               Add to Cart
             </Button>
