@@ -2,6 +2,7 @@ import { Box, Button, Stack, Typography } from "@mui/material";
 import TextField from "@mui/material/TextField";
 import React, { useState } from "react";
 
+
 export default function ItemCount({ stock, onClickAddToCart }) {
   function validateQuantity({ target }) {
     if (target.value > stock) target.value = stock;
@@ -9,6 +10,7 @@ export default function ItemCount({ stock, onClickAddToCart }) {
     setQuantity(target.value)
   }
   const [quantity, setQuantity] = useState(1);
+  
   return (
     <>
       <Stack direction="row" justifyContent="space-between" mx={4} mt={1} alignItems="center" spacing={2}>
@@ -44,8 +46,8 @@ export default function ItemCount({ stock, onClickAddToCart }) {
           Add to Cart
         </Button>
       </Stack>
-      <Typography variant="caption" color="initial" align="center" m={0}>
-        {stock} unidades disponibles.
+      <Typography variant="caption" color="initial" align="center" mb={1}>
+        {stock} units available.
       </Typography>
     </>
   );
