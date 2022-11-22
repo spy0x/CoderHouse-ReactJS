@@ -46,16 +46,11 @@ export default function ItemDetail({ item }) {
               </Typography>
             </Box>
             <TableItemSpecs itemSpecs={specifications} isbn={isbn} />
-              <Typography mt={2} display="block" variant="h6" color="text.secondary" align="center" gutterBottom>
-                ${price} USD
-              </Typography>
+            <Typography mt={2} display="block" variant="h6" color="text.secondary" align="center" gutterBottom>
+              ${price} USD
+            </Typography>
             <Divider />
-            <Stack direction="row" justifyContent="space-between" mx={4} my={1} alignItems="center" spacing={2}>
-              <ItemCount stock={stock} />
-              <Button size="small" sx={{ padding: "1rem" }}>
-                Add to Cart
-              </Button>
-            </Stack>
+            <ItemCount stock={stock} />
           </Stack>
         </Grid>
       </Grid>

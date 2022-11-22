@@ -45,12 +45,7 @@ export default function Item({ product }) {
             </Link>
           </Stack>
           <Divider variant="middle" />
-          <Stack direction="row" justifyContent="space-between" mx={4} my={1} alignItems="center" spacing={2}>
-            <ItemCount stock={stock} />
-            <Button size="small" sx={{ padding: "1rem" }}>
-              Add to Cart
-            </Button>
-          </Stack>
+          <ItemCount stock={stock} />
         </Stack>
       </Stack>
     </Card>
