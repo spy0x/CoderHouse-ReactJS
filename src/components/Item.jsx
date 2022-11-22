@@ -45,7 +45,7 @@ export default function Item({ product }) {
             </Link>
           </Stack>
           <Divider variant="middle" />
-          <ItemCount stock={stock} />
+          <ItemCount item={stock} />
         </Stack>
       </Stack>
     </Card>

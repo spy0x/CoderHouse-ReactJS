@@ -1,7 +1,7 @@
-import { Box, CardMedia, Grid, Typography, Stack, Button, Divider } from "@mui/material";
-import React from "react";
-import TableItemSpecs from "./TableItemSpecs";
+import { Box, CardMedia, Divider, Grid, Stack, Typography } from "@mui/material";
+import React, { useState } from "react";
 import ItemCount from "./ItemCount";
+import TableItemSpecs from "./TableItemSpecs";
 
 const boxStyle = {
   width: "90%",
@@ -14,6 +14,11 @@ const boxStyle = {
 
 export default function ItemDetail({ item }) {
   const { img, title, author, specifications, price, stock, isbn } = item;
+  const handleAddToCart = (quantity) => {
+    console.log(`Agregaste ${quantity} al carrito`);
+    setShowItemCount(false);
+  };
+  const [showItemCount, setShowItemCount] = useState(true);
   return (
     <Box sx={boxStyle}>
       <Grid
@@ -50,7 +55,7 @@ export default function ItemDetail({ item }) {
               ${price} USD
             </Typography>
             <Divider />
-            <ItemCount stock={stock} />
+            {showItemCount ? <ItemCount stock={stock} onClickAddToCart={handleAddToCart} /> : <>Nada</>}
           </Stack>
         </Grid>
       </Grid>
