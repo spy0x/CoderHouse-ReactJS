@@ -1,6 +1,7 @@
 import { Box, Button, Stack, Typography } from "@mui/material";
 import TextField from "@mui/material/TextField";
 import React, { useState } from "react";
+import AddShoppingCartRoundedIcon from '@mui/icons-material/AddShoppingCartRounded';
 
 
 export default function ItemCount({ stock, onClickAddToCart }) {
@@ -42,7 +43,7 @@ export default function ItemCount({ stock, onClickAddToCart }) {
             />
           </div>
         </Box>
-        <Button size="small" sx={{ padding: "1rem" }} onClick={() => onClickAddToCart(quantity)}>
+        <Button size="small" sx={{ padding: "1rem" }} onClick={() => onClickAddToCart(quantity)} startIcon={<AddShoppingCartRoundedIcon />}>
           Add to Cart
         </Button>
       </Stack>

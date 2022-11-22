@@ -1,11 +1,20 @@
 import { Box, Button, CardMedia, Divider, Grid, Stack, Typography } from "@mui/material";
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import React, { useState, useContext } from "react";
 import ItemCount from "./ItemCount";
 import Loader from "./Loader";
 import TableItemSpecs from "./TableItemSpecs";
-import ShoppingCartRoundedIcon from "@mui/icons-material/ShoppingCartRounded";
 import { toast } from "react-toastify";
+import { context } from "../context/CartContext";
+import ItemDetailFinish from "./ItemDetailFinish";
+class Product {
+  constructor(isbn, title, author, price, quantity) {
+    this.isbn = isbn;
+    this.title = title;
+    this.author = author;
+    this.price = price;
+    this.quantity = parseInt(quantity);
+  }
+}
 
 const boxStyle = {
   width: "90%",
@@ -18,35 +27,25 @@ const boxStyle = {
 
 export default function ItemDetail({ item }) {
   const { img, title, author, specifications, price, stock, isbn } = item;
+  const { addItem } = useContext(context);
   const [showItemCount, setShowItemCount] = useState(true);
   const [goToCartButton, setGoToCartButton] = useState(<Loader />);
   function handleAddToCart(quantity) {
-    setShowItemCount(false);
-    const goToCartButtonDelay = new Promise((res, rej) => {
-      setTimeout(() => {
-        res(
-          <Stack direction="row" justifyContent="center" alignItems="center" spacing={0}>
-            <Link to="/cart" style={{ textDecoration: "none" }}>
-              <Button
-                variant="contained"
-                color="error"
-                size="medium"
-                endIcon={<ShoppingCartRoundedIcon />}
-                sx={{ textAlign: "center" }}
-              >
-                View Cart
-              </Button>
-            </Link>
-          </Stack>
-        );
-      }, 1000);
-    });
-    goToCartButtonDelay.then((res) => {
-      setGoToCartButton(res);
-      toast.success("Item added to cart!", {
-        autoClose: 1000,
+    const product = new Product(isbn, title, author, price, quantity);
+    if (addItem(product, stock)) {
+      setShowItemCount(false);
+      const goToCartButtonDelay = new Promise((res, rej) => {
+        setTimeout(() => {
+          res(<ItemDetailFinish />);
+        }, 1000);
       });
-    });
+      goToCartButtonDelay.then((res) => {
+        setGoToCartButton(res);
+        toast.success("Item added to cart!", {
+          autoClose: 1000,
+        });
+      });
+    }
   }
   return (
     <Box sx={boxStyle}>
