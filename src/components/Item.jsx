@@ -1,4 +1,4 @@
-import { Divider, Stack } from "@mui/material";
+import { Stack } from "@mui/material";
 import Button from "@mui/material/Button";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
@@ -6,10 +6,9 @@ import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
 import React from "react";
 import { Link } from "react-router-dom";
-import ItemCount from "./ItemCount";
 
 export default function Item({ product }) {
-  const { author, img, title, price, isbn, stock } = product;
+  const { author, img, title, price, isbn } = product;
   return (
     <Card sx={{ height: "100%" }}>
       <Stack direction="column" justifyContent="space-between" alignItems="stretch" spacing={0} sx={{ height: "100%" }}>
