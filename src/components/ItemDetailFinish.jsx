@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { Button, Stack } from "@mui/material";
 import ShoppingCartRoundedIcon from "@mui/icons-material/ShoppingCartRounded";
-import StoreRoundedIcon from '@mui/icons-material/StoreRounded';
+import StoreRoundedIcon from "@mui/icons-material/StoreRounded";
 
 export default function ItemDetailFinish() {
   return (
