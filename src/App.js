@@ -3,6 +3,8 @@ import ItemListContainer from './components/ItemListContainer';
 import Footer from './components/Footer';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import ItemDetailContainer from './components/ItemDetailContainer';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const productsDB = [
   {
@@ -99,6 +101,7 @@ const productsDB = [
 function App() {
   return (
     <BrowserRouter>
+      <ToastContainer/>
       <MyNavBar />
       <Routes>
         <Route path="/" element={<ItemListContainer greeting="Welcome to our Bookstore" productsDB={productsDB} style={{marginButton: '150px'}}/>} />
