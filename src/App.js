@@ -8,6 +8,17 @@ import 'react-toastify/dist/ReactToastify.css';
 import CartContext from './context/CartContext';
 import Cart from './components/Cart';
 
+export class Product {
+  constructor(isbn, title, author, price, quantity, img) {
+    this.isbn = isbn;
+    this.title = title;
+    this.author = author;
+    this.price = price;
+    this.quantity = parseInt(quantity);
+    this.img = img;
+  }
+}
+
 const productsDB = [
   {
     isbn: "9789569673245",
