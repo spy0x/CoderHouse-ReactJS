@@ -6,6 +6,7 @@ import ItemDetailContainer from './components/ItemDetailContainer';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import CartContext from './context/CartContext';
+import Cart from './components/Cart';
 
 const productsDB = [
   {
@@ -107,6 +108,7 @@ function App() {
         <MyNavBar />
         <Routes>
           <Route path="/" element={<ItemListContainer greeting="Welcome to our Bookstore" productsDB={productsDB} style={{marginButton: '150px'}}/>} />
+          <Route path="/cart" element={<Cart productsDB={productsDB} style={{marginButton: '150px'}}/>} />
           <Route path="/books/isbn/:isbn" element={<ItemDetailContainer productsDB={productsDB} style={{marginButton: '150px'}}/>} />
           <Route path="/books/category/top" element={<ItemListContainer greeting="TOP BOOKS" productsDB={productsDB} category="top" style={{marginButton: '150px'}}/>} />
           <Route path="/books/category/new" element={<ItemListContainer greeting="NEW BOOKS" productsDB={productsDB} category="new" style={{marginButton: '150px'}}/>} />
