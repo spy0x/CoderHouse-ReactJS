@@ -8,7 +8,6 @@ import Loader from "./Loader";
 import TableItemSpecs from "./TableItemSpecs";
 import { Product } from "../App";
 
-
 const boxStyle = {
   width: "90%",
   bgcolor: "background.paper",
