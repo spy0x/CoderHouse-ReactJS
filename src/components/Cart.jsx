@@ -1,15 +1,27 @@
-import { TableHead, Box, Grid, IconButton, Typography } from "@mui/material";
-import Paper from "@mui/material/Paper";
+import DeleteForeverRoundedIcon from "@mui/icons-material/DeleteForeverRounded";
+import StoreRoundedIcon from "@mui/icons-material/StoreRounded";
+import {
+  Box,
+  Button,
+  Divider,
+  Grid,
+  IconButton,
+  Paper,
+  Table,
+  TableBody,
+  TableCell,
+  TableContainer,
+  TableHead,
+  TableRow,
+  Typography,
+  Stack
+} from "@mui/material";
 import { styled } from "@mui/material/styles";
-import Table from "@mui/material/Table";
-import TableBody from "@mui/material/TableBody";
-import TableCell, { tableCellClasses } from "@mui/material/TableCell";
-import TableContainer from "@mui/material/TableContainer";
-import TableRow from "@mui/material/TableRow";
+import { tableCellClasses } from "@mui/material/TableCell";
 import { Image } from "mui-image";
 import React, { useContext } from "react";
+import { Link } from "react-router-dom";
 import { context } from "../context/CartContext";
-import DeleteForeverRoundedIcon from "@mui/icons-material/DeleteForeverRounded";
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
@@ -36,12 +48,39 @@ const boxStyle = {
   bgcolor: "background.paper",
   border: "1px solid #000",
   boxShadow: 24,
-  p: { xs: 0, md: 4 },
+  px: { xs: 0, md: 4 },
+  pt: { xs: 0, md: 4 },
+  pb: 3,
   mb: 7,
 };
 
 export default function Cart() {
   const { cart, removeItem } = useContext(context);
+  if (cart.length < 1) {
+    return (
+      <Grid container justifyContent="center" my={2}>
+        <Box sx={boxStyle}>
+          <Typography align="center" component="div" variant="body1" color="initial">
+            Your cart is empty!
+          </Typography>
+          <Divider component="div" variant="middle" sx={{ m: 2 }} />
+          <Stack direction="row" justifyContent="center" alignItems="center" spacing={10}>
+            <Link to="/" style={{ textDecoration: "none" }}>
+              <Button
+                variant="contained"
+                color="error"
+                size="medium"
+                startIcon={<StoreRoundedIcon />}
+                sx={{ textAlign: "center" }}
+              >
+                Continue Shopping
+              </Button>
+            </Link>
+          </Stack>
+        </Box>
+      </Grid>
+    );
+  }
   return (
     <Grid container justifyContent="center" my={2}>
       <Box sx={boxStyle}>
@@ -66,13 +105,13 @@ export default function Cart() {
                       width="100%"
                       fit="contain"
                       bgColor="inherit"
-                      sx={{ minWidth: "25px"}}
+                      sx={{ minWidth: "25px" }}
                     />
                   </StyledTableCell>
                   <StyledTableCell align="left">{title}</StyledTableCell>
                   <StyledTableCell align="right">x{quantity}</StyledTableCell>
                   <StyledTableCell align="right">${price * quantity}</StyledTableCell>
-                  <StyledTableCell  padding="checkbox" align="center">
+                  <StyledTableCell padding="checkbox" align="center">
                     <IconButton color="primary" component="label" onClick={() => removeItem(isbn)}>
                       <DeleteForeverRoundedIcon />
                     </IconButton>
@@ -82,7 +121,10 @@ export default function Cart() {
             </TableBody>
           </Table>
         </TableContainer>
-        <Typography variant="h6" align="right" color="initial">TOTAL TO PAY: ${cart.reduce((acc, {price, quantity}) => acc + price * quantity, 0)}</Typography>
+        <Divider component="div" variant="middle" sx={{ mt: 4 }} />
+        <Typography letterSpacing={0.8} variant="h6" mx={2} mt={2} align="right" color="initial">
+          TOTAL TO PAY (USD): ${cart.reduce((acc, { price, quantity }) => acc + price * quantity, 0)}
+        </Typography>
       </Box>
     </Grid>
   );
