@@ -1,4 +1,4 @@
-import React, { createContext, useState } from "react";
+import React, { createContext, useState, useEffect } from "react";
 import Swal from "sweetalert2";
 
 export const context = createContext();
@@ -6,7 +6,13 @@ export const context = createContext();
 export default function CartContext({ children }) {
   const userCart = JSON.parse(localStorage.getItem("userCart")) || [];
   const [cart, setCart] = useState(userCart);
-  console.log(cart);
+  const [itemsAmount, setItemsAmount] = useState(0);
+
+  useEffect(() => {
+    localStorage.setItem("userCart", JSON.stringify(cart));
+    setItemsAmount(cart.reduce((acc, { quantity }) => acc + quantity, 0));
+  }, [cart]);
+
   function posInCart(isbn) {
     const pos = cart.findIndex((item) => item.isbn === isbn);
     return pos;
@@ -30,17 +36,19 @@ export default function CartContext({ children }) {
       cartAux[pos].quantity = cartAux[pos].quantity + product.quantity;
       setCart(cartAux);
     }
-    localStorage.setItem("userCart", JSON.stringify(cart));
     return true;
   }
+
   function removeItem(isbn) {
     setCart(cart.filter((product) => product.isbn !== isbn));
   }
+
   function clear() {
     setCart([]);
   }
+
   // function isInCart(isbn) {
   //   return cart.some((element) => element === isbn);
   // }
-  return <context.Provider value={{ cart, addItem, removeItem, clear }}>{children}</context.Provider>;
+  return <context.Provider value={{ cart, addItem, removeItem, clear, itemsAmount }}>{children}</context.Provider>;
 }
