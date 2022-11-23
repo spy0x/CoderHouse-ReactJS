@@ -4,37 +4,38 @@ import { useParams } from "react-router-dom";
 import ItemList from "./ItemList";
 import Loader from "./Loader";
 import ErrorPage from "./ErrorPage";
+import { collection, getDocs, getFirestore } from "firebase/firestore";
 
-export default function ItemListContainer({ greeting, category, productsDB }) {
+export default function ItemListContainer({ greeting, category }) {
+  
   const [products, setProducts] = useState([]);
   const { author } = useParams();
   const titlePage = author ? `${author.replace('_', ' ')}'s books` : greeting;
   //Simulating Server Delay Loading
   useEffect(() => {
-    async function delayTest() {
+    const db = getFirestore();
+    const getCollection = collection(db, "product");
+    async function loadDB() {
       setProducts([]);
-      const productsDelay = await new Promise((res, rej) => {
-        setTimeout(() => {
-          res(productsDB);
-        }, 1000);
-      });
+      const result = await getDocs(getCollection);
+      const productsDB = result.docs.map((element) => element.data())
       if (author) {
-        setProducts(productsDelay.filter((item) => item.author === author.replace('_', ' ')));
+        setProducts(productsDB.filter((item) => item.author === author.replace('_', ' ')));
       } else if (category === "new")
       {
-        setProducts(productsDelay.filter((item) => item.new === true));
+        setProducts(productsDB.filter((item) => item.new === true));
       } else if (category === "top")
       {
-        setProducts(productsDelay.filter((item) => item.top === true));
+        setProducts(productsDB.filter((item) => item.top === true));
       } else {
-        setProducts(productsDelay);
+        setProducts(productsDB);
+      }
+      if (author && !productsDB.some(element => element.author === author.replace('_', ' '))){
+        return <ErrorPage/>
       }
     }
-    delayTest();
-  }, [author, category, productsDB]);
-  if (author && !productsDB.some(element => element.author === author.replace('_', ' '))){
-    return <ErrorPage/>
-  }
+    loadDB();
+  }, [author, category]);
 
   return (
     <Grid container spacing={2} justifyContent="center" my={2} alignItems="center" mb={10}>

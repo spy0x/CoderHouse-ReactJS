@@ -128,7 +128,7 @@ function App() {
               />
             }
           />
-          <Route path="/cart" element={<Cart productsDB={productsDB} style={{ marginButton: "150px" }} />} />
+          <Route path="/cart" element={<Cart style={{ marginButton: "150px" }} />} />
           <Route
             path="/books/isbn/:isbn"
             element={<ItemDetailContainer productsDB={productsDB} style={{ marginButton: "150px" }} />}
