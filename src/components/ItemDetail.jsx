@@ -43,6 +43,7 @@ export default function ItemDetail({ item }) {
         setGoToCartButton(res);
         toast.success("Item added to cart!", {
           autoClose: 1000,
+          position: toast.POSITION.BOTTOM_RIGHT,
         });
       });
     }
