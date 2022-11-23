@@ -15,7 +15,7 @@ export default function ItemDetailContainer({ productsDB }) {
       const productsDelay = await new Promise((res, rej) => {
         setTimeout(() => {
           res(productsDB);
-        }, 2000);
+        }, 1000);
       });
       setProducts(productsDelay);
     }

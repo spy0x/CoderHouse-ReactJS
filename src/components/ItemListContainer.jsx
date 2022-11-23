@@ -16,7 +16,7 @@ export default function ItemListContainer({ greeting, category, productsDB }) {
       const productsDelay = await new Promise((res, rej) => {
         setTimeout(() => {
           res(productsDB);
-        }, 2000);
+        }, 1000);
       });
       if (author) {
         setProducts(productsDelay.filter((item) => item.author === author.replace('_', ' ')));
