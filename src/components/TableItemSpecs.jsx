@@ -8,7 +8,7 @@ import TableRow from "@mui/material/TableRow";
 import React from "react";
 
 export default function TableItemSpecs({ itemSpecs, isbn }) {
-  const { paperType, dimensions, pages } = itemSpecs;
+  const [ paperType, dimensions, pages ] = itemSpecs;
   return (
     <TableContainer component={Paper} sx={{ mt: 2 }}>
       <Table size="small" aria-label="a dense table">

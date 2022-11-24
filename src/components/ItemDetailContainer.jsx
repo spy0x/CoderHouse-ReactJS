@@ -4,30 +4,31 @@ import { useParams } from "react-router-dom";
 import ErrorPage from "./ErrorPage";
 import ItemDetail from "./ItemDetail";
 import Loader from "./Loader";
+import { collection, getDocs, getFirestore, query, where } from "firebase/firestore";
 
-export default function ItemDetailContainer({ productsDB }) {
+export default function ItemDetailContainer() {
   const { isbn } = useParams();
   const [products, setProducts] = useState([]);
 
   useEffect(() => {
-    async function delayTest() {
+    const db = getFirestore();
+    const q = query(collection(db, "product"), where("isbn", "==", isbn));
+    async function loadDB() {
       setProducts([]);
-      const productsDelay = await new Promise((res, rej) => {
-        setTimeout(() => {
-          res(productsDB);
-        }, 1000);
-      });
-      setProducts(productsDelay);
+      const result = await getDocs(q);
+      if(result.size === 0){
+        return <ErrorPage />;
+      }
+      const productsDB = result.docs.map((element) => element.data())
+      setProducts(productsDB);
     }
-    delayTest();
-  }, [productsDB]);
+    loadDB();
+  }, [isbn]);
 
-  if (isbn && !productsDB.some((item) => item.isbn === isbn)) {
-    return <ErrorPage />;
-  }
+
   return (
     <Grid container justifyContent="center" my={2} alignItems="center">
-      {products.length ? <ItemDetail item={products.find((item) => item.isbn === isbn)} /> : <Loader />}
+      {products.length ? <ItemDetail item={products[0]} /> : <Loader />}
     </Grid>
   );
 }
