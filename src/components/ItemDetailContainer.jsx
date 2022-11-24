@@ -6,6 +6,8 @@ import ItemDetail from "./ItemDetail";
 import Loader from "./Loader";
 import { collection, getDocs, getFirestore, query, where } from "firebase/firestore";
 
+let notValid;
+
 export default function ItemDetailContainer() {
   const { isbn } = useParams();
   const [products, setProducts] = useState([]);
@@ -16,16 +18,17 @@ export default function ItemDetailContainer() {
     async function loadDB() {
       setProducts([]);
       const result = await getDocs(q);
-      if(result.size === 0){
-        return <ErrorPage />;
+      if (result.size === 0) {
+        notValid = true;
       }
-      const productsDB = result.docs.map((element) => element.data())
+      const productsDB = result.docs.map((element) => element.data());
       setProducts(productsDB);
     }
     loadDB();
   }, [isbn]);
-
-
+  if (notValid) {
+    return <ErrorPage />;
+  }
   return (
     <Grid container justifyContent="center" my={2} alignItems="center">
       {products.length ? <ItemDetail item={products[0]} /> : <Loader />}
