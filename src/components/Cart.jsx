@@ -1,5 +1,6 @@
 import DeleteForeverRoundedIcon from "@mui/icons-material/DeleteForeverRounded";
-import StoreRoundedIcon from "@mui/icons-material/StoreRounded";
+import LocalAtmOutlinedIcon from '@mui/icons-material/LocalAtmOutlined';
+import StoreRoundedIcon from '@mui/icons-material/LocalAtmOutlined';
 import {
   Box,
   Button,
@@ -7,6 +8,7 @@ import {
   Grid,
   IconButton,
   Paper,
+  Stack,
   Table,
   TableBody,
   TableCell,
@@ -14,7 +16,6 @@ import {
   TableHead,
   TableRow,
   Typography,
-  Stack
 } from "@mui/material";
 import { styled } from "@mui/material/styles";
 import { tableCellClasses } from "@mui/material/TableCell";
@@ -84,9 +85,9 @@ export default function Cart() {
   return (
     <Grid container justifyContent="center" my={2}>
       <Box sx={boxStyle}>
-      <Typography variant="h1" mb={2} color="initial" align="center" sx={{ fontWeight: "bold", fontSize: "2.5rem" }}>
-        My Cart
-      </Typography>
+        <Typography variant="h1" mb={2} color="initial" align="center" sx={{ fontWeight: "bold", fontSize: "2.5rem" }}>
+          My Cart
+        </Typography>
         <TableContainer component={Paper}>
           <Table>
             <TableHead>
@@ -125,9 +126,22 @@ export default function Cart() {
           </Table>
         </TableContainer>
         <Divider component="div" variant="middle" sx={{ mt: 4 }} />
-        <Typography letterSpacing={0.8} variant="h6" mx={2} mt={2} align="right" color="initial">
-          TOTAL TO PAY (USD): ${cart.reduce((acc, { price, quantity }) => acc + price * quantity, 0)}
-        </Typography>
+        <Stack direction="column" justifyContent="flex-start" alignItems="flex-end" spacing={2}>
+          <Typography letterSpacing={0.8} variant="h6" mx={2} mt={2} align="right" color="initial">
+            TOTAL TO PAY (USD): ${cart.reduce((acc, { price, quantity }) => acc + price * quantity, 0)}
+          </Typography>
+          <Link to="/checkout" style={{ textDecoration: "none" }}>
+            <Button
+              variant="contained"
+              color="error"
+              size="medium"
+              startIcon={<LocalAtmOutlinedIcon/>}
+              sx={{ textAlign: "center" }}
+            >
+              CHECKOUT
+            </Button>
+          </Link>
+        </Stack>
       </Box>
     </Grid>
   );

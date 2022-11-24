@@ -37,7 +37,7 @@ function App() {
             }
           />
           <Route path="/cart" element={<Cart style={{ marginButton: "150px" }} />} />
-          <Route path="/checkout" element={<Checkout/>} />
+          <Route path="/checkout" element={<Checkout style={{ marginButton: "150px" }} />} />
           <Route
             path="/books/isbn/:isbn"
             element={<ItemDetailContainer style={{ marginButton: "150px" }} />}

@@ -12,6 +12,8 @@ import {
 import React, { useState, useEffect, useContext } from "react";
 import { addDoc, collection, getFirestore } from "firebase/firestore";
 import { context } from "../context/CartContext";
+import Swal from "sweetalert2";
+import SuccessPayment from "./SuccessPayment";
 
 const boxStyle = {
   width: { xs: "100%", sm: "90%" },
@@ -53,16 +55,25 @@ export default function Checkout() {
       setPhone("");
       clearCart();
     }
-  }, [orderID, clearCart]);
+  }, [orderID]);
 
   function handleSubmit(e) {
     e.preventDefault();
+    if (!cart.length) {
+      Swal.fire({
+        title: "Error!",
+        text: "Your cart is empty!",
+        icon: "error",
+        confirmButtonText: "OK",
+      });
+      return;
+    }
     setOpenBackdrop(true);
     createOrder();
   }
   async function createOrder() {
     const order = {
-      buyer: { name: name, email: email, phone: phone },
+      buyer: { name: name.toLowerCase(), email: email.toLowerCase(), phone: phone },
       cart: cart,
       total: cart.reduce((acc, { quantity, price }) => acc + quantity * price, 0),
     };
@@ -71,8 +82,13 @@ export default function Checkout() {
     const result = await addDoc(ordersCollections, order);
     setOrderID(result);
   }
+  if (orderID !== "") {
+    let successPage = <SuccessPayment orderID={orderID} />;
+    setOrderID("");
+    return successPage;
+  }
   return (
-    <Grid container justifyContent="center" mt={2} mb={18.75}>
+    <Grid container justifyContent="center" mt={2}>
       <Box sx={boxStyle}>
         <Typography variant="h1" mb={2} color="initial" align="center" sx={{ fontWeight: "bold", fontSize: "2.5rem" }}>
           Checkout
@@ -96,6 +112,7 @@ export default function Checkout() {
                   onKeyDown={handleTextVerification}
                   onChange={(e) => setName(e.target.value)}
                   value={name}
+                  type="text"
                   InputLabelProps={{
                     shrink: true,
                   }}
