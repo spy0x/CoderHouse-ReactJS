@@ -43,12 +43,12 @@ export default function CartContext({ children }) {
     setCart(cart.filter((product) => product.isbn !== isbn));
   }
 
-  function clear() {
+  function clearCart() {
     setCart([]);
   }
 
   // function isInCart(isbn) {
   //   return cart.some((element) => element === isbn);
   // }
-  return <context.Provider value={{ cart, addItem, removeItem, clear, itemsAmount }}>{children}</context.Provider>;
+  return <context.Provider value={{ cart, addItem, removeItem, clearCart, itemsAmount }}>{children}</context.Provider>;
 }

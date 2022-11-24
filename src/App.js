@@ -1,12 +1,13 @@
-import MyNavBar from "./components/Navbar";
-import ItemListContainer from "./components/ItemListContainer";
-import Footer from "./components/Footer";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-import ItemDetailContainer from "./components/ItemDetailContainer";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import CartContext from "./context/CartContext";
 import Cart from "./components/Cart";
+import Checkout from "./components/Checkout";
+import Footer from "./components/Footer";
+import ItemDetailContainer from "./components/ItemDetailContainer";
+import ItemListContainer from "./components/ItemListContainer";
+import MyNavBar from "./components/Navbar";
+import CartContext from "./context/CartContext";
 
 export class Product {
   constructor(isbn, title, author, price, quantity, img) {
@@ -36,6 +37,7 @@ function App() {
             }
           />
           <Route path="/cart" element={<Cart style={{ marginButton: "150px" }} />} />
+          <Route path="/checkout" element={<Checkout/>} />
           <Route
             path="/books/isbn/:isbn"
             element={<ItemDetailContainer style={{ marginButton: "150px" }} />}

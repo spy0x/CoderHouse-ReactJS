@@ -22,6 +22,7 @@ export default function ItemDetail({ item }) {
   const { addItem } = useContext(context);
   const [showItemCount, setShowItemCount] = useState(true);
   const [goToCartButton, setGoToCartButton] = useState(<Loader />);
+  
   function handleAddToCart(quantity) {
     const product = new Product(isbn, title, author, price, quantity, img);
     if (addItem(product, stock)) {
