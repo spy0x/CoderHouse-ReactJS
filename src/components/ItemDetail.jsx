@@ -6,7 +6,6 @@ import ItemCount from "./ItemCount";
 import ItemDetailFinish from "./ItemDetailFinish";
 import Loader from "./Loader";
 import TableItemSpecs from "./TableItemSpecs";
-import { Product } from "../App";
 
 const boxStyle = {
   width: "90%",
@@ -24,7 +23,7 @@ export default function ItemDetail({ item }) {
   const [goToCartButton, setGoToCartButton] = useState(<Loader />);
   
   function handleAddToCart(quantity) {
-    const product = new Product(isbn, title, author, price, quantity, img);
+    const product = {isbn, title, author, price, quantity, img};
     if (addItem(product, stock)) {
       setShowItemCount(false);
       const goToCartButtonDelay = new Promise((res, rej) => {

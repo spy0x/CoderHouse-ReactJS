@@ -9,17 +9,6 @@ import ItemListContainer from "./components/ItemListContainer";
 import MyNavBar from "./components/Navbar";
 import CartContext from "./context/CartContext";
 
-export class Product {
-  constructor(isbn, title, author, price, quantity, img) {
-    this.isbn = isbn;
-    this.title = title;
-    this.author = author;
-    this.price = price;
-    this.quantity = parseInt(quantity);
-    this.img = img;
-  }
-}
-
 function App() {
   return (
     <CartContext>
