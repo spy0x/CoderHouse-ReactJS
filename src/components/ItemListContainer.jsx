@@ -1,10 +1,12 @@
-import { Grid, Paper, Typography } from "@mui/material";
+import { Grid } from "@mui/material";
+import { collection, getDocs, getFirestore } from "firebase/firestore";
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import ErrorPage from "./ErrorPage";
 import ItemList from "./ItemList";
 import Loader from "./Loader";
-import ErrorPage from "./ErrorPage";
-import { collection, getDocs, getFirestore } from "firebase/firestore";
+
+let notValid;
 
 export default function ItemListContainer({ greeting, category }) {
   
@@ -31,22 +33,21 @@ export default function ItemListContainer({ greeting, category }) {
         setProducts(productsDB);
       }
       if (author && !productsDB.some(element => element.author === author.replace('_', ' '))){
-        return <ErrorPage/>
+        notValid = true;
+      }
+      else {
+        notValid = false;
       }
     }
     loadDB();
   }, [author, category]);
-
+  if (notValid) {
+    return <ErrorPage />;
+  }
   return (
     <Grid container spacing={2} justifyContent="center" my={2} alignItems="center" mb={10}>
       <Grid item xs={11} xl={10}>
-        <Paper elevation={4} sx={{ bgcolor: "whitesmoke", padding: "16px" }}>
-          <Typography variant="h1" color="initial" align="center" sx={{ fontWeight: "bold", fontSize: "2.5rem" }}>
-            {titlePage}
-          </Typography>
-          {!products.length && <Loader />}
-          <ItemList products={products} />
-        </Paper>
+          {products.length ? <ItemList products={products} titlePage={titlePage} /> : <Loader />}
       </Grid>
     </Grid>
   );
