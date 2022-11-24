@@ -84,6 +84,9 @@ export default function Cart() {
   return (
     <Grid container justifyContent="center" my={2}>
       <Box sx={boxStyle}>
+      <Typography variant="h1" mb={2} color="initial" align="center" sx={{ fontWeight: "bold", fontSize: "2.5rem" }}>
+        My Cart
+      </Typography>
         <TableContainer component={Paper}>
           <Table>
             <TableHead>
