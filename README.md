@@ -1,70 +1,17 @@
-# Getting Started with Create React App
+# Proyecto Final React JS - CoderHouse
+##  Librería Los Tres Primos
+#### Por Francisco Vargas - Comisión 44970
+Aplicación Web Ecommerce desarrollada con React JS, MUI y Firebase.
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+![](https://coderhouse-fvd.web.app/logo192.png)
 
-## Available Scripts
+El sitio permite al usuario ver y agregar productos a su carrito (cart) y proceder a finalizar la compra (checkout), llenando un formulario de contacto (con validaciones), para luego conectarse a la base de datos y entregar un comprobante al usuario (ID generado por Firestore). 
 
-In the project directory, you can run:
+El sitio puede navegarse desde su ruta principal, donde se muestran todos los productos disponibles, o por las categorías que filtran los títulos de alta popularidad (/books/category/top), y produtos nuevos (/books/category/new). Se creó además una ruta dinámica por el ISBN del producto que permite ingresar directamente al detalle del producto (/books/isbn/:id). No se hizo uso del ID autogenerado de Firestore, ya que el ISBN ya es un código único y universal para cada libro.
+Adicionalmente se configuró otra ruta dinámica ingresando el nombre_apellido del autor, lo que permite solo visualizar los libros en venta del autor respectivo (/books/author/:author). No obstante, no se implementó en la interfaz para esta entrega, porque es una feature ideada para implementarse en un sistema de búsqueda para el sitio, lo que está fuera de lo requerido para esta entrega.
 
-### `npm start`
-
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
-
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+------------
+Se hizo uso de las siguientes librerías adicionales a las requeridas para el curso:
+- **sweetalert2**: Para el manejo de las notificaciones de error por validación. Fáciles de implementar y de interfaz simple y agradable.
+- **mui/image**: Para customizar facilmente imágenes como componentes de MUI.
+- **react-toastify**: Para el manejo de notificaciones de acciones del usuario (como producto agregado al carrito). Fáciles de implementar y de interfaz simple y agradable.

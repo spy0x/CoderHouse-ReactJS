@@ -34,7 +34,7 @@ function handleTextVerification(event) {
   }
 }
 function handleNumberVerification(event) {
-  if((event.keyCode > 31 && event.keyCode < 48) || event.keyCode > 57) {
+  if ((event.keyCode > 31 && event.keyCode < 48) || event.keyCode > 57) {
     event.preventDefault();
   }
 }
@@ -60,7 +60,7 @@ export default function Checkout() {
       });
       return;
     }
-    if(email !== email2){
+    if (email !== email2) {
       setEmailError(true);
       return;
     } else {
@@ -71,10 +71,10 @@ export default function Checkout() {
   }
   async function createOrder() {
     const order = {
-      buyer: { name, email, phone},
+      buyer: { name, email, phone },
       cart,
       total: cart.reduce((acc, { quantity, price }) => acc + quantity * price, 0),
-      date: serverTimestamp()
+      date: serverTimestamp(),
     };
     const db = getFirestore();
     const ordersCollections = collection(db, "orders");
@@ -170,9 +170,8 @@ export default function Checkout() {
                       onKeyDown={handleNumberVerification}
                       onChange={(e) => setPhone(e.target.value)}
                       value={phone}
-                      InputLabelProps={{
-                        shrink: true,
-                      }}
+                      inputProps={{ maxLength: 12 }}  
+                      InputLabelProps={{ shrink: true }}
                     />
                     <Button type="submit" variant="contained" color="error">
                       Confirm Purchase
