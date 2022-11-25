@@ -50,7 +50,7 @@ const boxStyle = {
   border: "1px solid #000",
   boxShadow: 24,
   px: { xs: 0, md: 4 },
-  pt: { xs: 0, md: 4 },
+  pt: { xs: 2, md: 4 },
   pb: 3,
   mb: 7,
 };
@@ -140,7 +140,7 @@ export default function Cart() {
               color="error"
               size="medium"
               startIcon={<LocalAtmOutlinedIcon />}
-              sx={{ textAlign: "center" }}
+              sx={{ textAlign: "center", marginRight: 2 }}
             >
               CHECKOUT
             </Button>

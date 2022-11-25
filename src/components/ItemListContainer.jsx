@@ -9,33 +9,31 @@ import Loader from "./Loader";
 let notValid;
 
 export default function ItemListContainer({ greeting, category }) {
-  
   const [products, setProducts] = useState([]);
   const { author } = useParams();
-  const titlePage = author ? `${author.replace('_', ' ')}'s books` : greeting;
+  const titlePage = author ? `${author.replace("_", " ")}'s books` : greeting;
   //Simulating Server Delay Loading
   useEffect(() => {
     const db = getFirestore();
     const getCollection = collection(db, "product");
+    const titlePage = category !== undefined ? `LTP - ${category.toUpperCase()}` : "LTP - Bookstore";
+    document.title = titlePage;
     async function loadDB() {
       setProducts([]);
       const result = await getDocs(getCollection);
-      const productsDB = result.docs.map((element) => element.data())
+      const productsDB = result.docs.map((element) => element.data());
       if (author) {
-        setProducts(productsDB.filter((item) => item.author === author.replace('_', ' ')));
-      } else if (category === "new")
-      {
+        setProducts(productsDB.filter((item) => item.author === author.replace("_", " ")));
+      } else if (category === "new") {
         setProducts(productsDB.filter((item) => item.new === true));
-      } else if (category === "top")
-      {
+      } else if (category === "top") {
         setProducts(productsDB.filter((item) => item.top === true));
       } else {
         setProducts(productsDB);
       }
-      if (author && !productsDB.some(element => element.author === author.replace('_', ' '))){
+      if (author && !productsDB.some((element) => element.author === author.replace("_", " "))) {
         notValid = true;
-      }
-      else {
+      } else {
         notValid = false;
       }
     }
@@ -47,7 +45,7 @@ export default function ItemListContainer({ greeting, category }) {
   return (
     <Grid container spacing={2} justifyContent="center" my={2} alignItems="center" mb={10}>
       <Grid item xs={11} xl={10}>
-          {products.length ? <ItemList products={products} titlePage={titlePage} /> : <Loader />}
+        {products.length ? <ItemList products={products} titlePage={titlePage} /> : <Loader />}
       </Grid>
     </Grid>
   );

@@ -2,6 +2,7 @@ import MenuIcon from "@mui/icons-material/Menu";
 import { AppBar, Box, Button, Container, IconButton, Menu, MenuItem, Toolbar, Typography } from "@mui/material";
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 
 import { grey } from "@mui/material/colors";
 import logo from "../assets/img/navbar_logo.png";
@@ -16,7 +17,7 @@ const pages = [
 
 function MyNavBar() {
   const [anchorElNav, setAnchorElNav] = useState(null);
-
+  const {pathname: currentPage} = useLocation();
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
   };
@@ -65,7 +66,7 @@ function MyNavBar() {
             >
               {pages.map((page, id) => (
                 <MenuItem key={id}>
-                  <Link to={page.url} style={{ textDecoration: "none", color: "inherit" }}>
+                  <Link to={page.url} style={{ textDecoration: currentPage === page.url ? "underline" : "none", color: "inherit" }}>
                     <Typography textAlign="center">{page.name}</Typography>
                   </Link>
                 </MenuItem>
@@ -80,7 +81,7 @@ function MyNavBar() {
           <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
             {pages.map((page, id) => (
               <Button key={id} sx={{ my: 2, color: "white", display: "block" }}>
-                <Link to={page.url} style={{ textDecoration: "none", color: "whitesmoke" }}>
+                <Link to={page.url} style={{ textDecoration: currentPage === page.url ? "underline" : "none", color: "whitesmoke" }}>
                   {page.name}
                 </Link>
               </Button>

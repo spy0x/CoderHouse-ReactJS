@@ -1,5 +1,5 @@
 import React from "react";
-import { Typography } from "@mui/material";
+import { Typography, Divider } from "@mui/material";
 
 export default function CheckoutBrief({ cart }) {
   return (
@@ -12,6 +12,7 @@ export default function CheckoutBrief({ cart }) {
           {title}(x{quantity}) ............... ${price * quantity}
         </Typography>
       ))}
+      <Divider component="div" variant="middle" sx={{ m: 2 }} />
       <Typography align="right" variant="h6" color="initial" marginRight={{xs:5, md:0}}>
         Total: ${cart.reduce((acc, {price, quantity})=> acc + price * quantity, 0)}
       </Typography>

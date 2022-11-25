@@ -26,7 +26,7 @@ export default function CheckoutSuccess({ orderID }) {
                 color="error"
                 size="medium"
                 startIcon={<StoreRoundedIcon />}
-                sx={{ textAlign: "center" }}
+                sx={{ textAlign: "center", marginY: 2 }}
               >
                 Continue Shopping
               </Button>
