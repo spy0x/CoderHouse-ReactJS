@@ -10,7 +10,7 @@ import {
   Typography,
 } from "@mui/material";
 import React, { useState, useContext } from "react";
-import { addDoc, collection, getFirestore } from "firebase/firestore";
+import { addDoc, collection, getFirestore, serverTimestamp } from "firebase/firestore";
 import { context } from "./CartContext";
 import Swal from "sweetalert2";
 import SuccessPayment from "./SuccessPayment";
@@ -67,6 +67,7 @@ export default function Checkout() {
       buyer: { name, email, phone},
       cart,
       total: cart.reduce((acc, { quantity, price }) => acc + quantity * price, 0),
+      date: serverTimestamp()
     };
     const db = getFirestore();
     const ordersCollections = collection(db, "orders");
