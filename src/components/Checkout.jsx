@@ -34,8 +34,7 @@ function handleTextVerification(event) {
   }
 }
 function handleNumberVerification(event) {
-  const includedChars = /^[0-9]+$/;
-  if (!includedChars.test(event.key)) {
+  if((event.keyCode > 31 && event.keyCode < 48) || event.keyCode > 57) {
     event.preventDefault();
   }
 }
@@ -44,9 +43,11 @@ export default function Checkout() {
   const { cart, clearCart } = useContext(context);
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
+  const [email2, setEmail2] = useState("");
   const [phone, setPhone] = useState("");
   const [openBackdrop, setOpenBackdrop] = useState(false);
   const [orderID, setOrderID] = useState("");
+  const [emailError, setEmailError] = useState(false);
 
   function handleSubmit(e) {
     e.preventDefault();
@@ -58,6 +59,12 @@ export default function Checkout() {
         confirmButtonText: "OK",
       });
       return;
+    }
+    if(email !== email2){
+      setEmailError(true);
+      return;
+    } else {
+      setEmailError(false);
     }
     setOpenBackdrop(true);
     createOrder();
@@ -79,7 +86,9 @@ export default function Checkout() {
   function clearInfo() {
     setName("");
     setEmail("");
+    setEmail2("");
     setPhone("");
+    setEmailError(false);
     clearCart();
   }
   if (orderID !== "") {
@@ -136,6 +145,23 @@ export default function Checkout() {
                     />
                     <TextField
                       required
+                      error={emailError}
+                      helperText={emailError && "Email does not match!"}
+                      id="confirm-email-input"
+                      label="Confirm Email"
+                      name="confirm email"
+                      placeholder="confirm@email.com"
+                      margin="normal"
+                      type="email"
+                      onChange={(e) => setEmail2(e.target.value)}
+                      value={email2}
+                      InputLabelProps={{
+                        shrink: true,
+                      }}
+                    />
+                    <TextField
+                      required
+                      type="tel"
                       id="phone-input"
                       label="Phone"
                       name="phone"
