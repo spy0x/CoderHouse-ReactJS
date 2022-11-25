@@ -13,7 +13,7 @@ import React, { useState, useContext } from "react";
 import { addDoc, collection, getFirestore, serverTimestamp } from "firebase/firestore";
 import { context } from "./CartContext";
 import Swal from "sweetalert2";
-import SuccessPayment from "./SuccessPayment";
+import CheckoutSuccess from "./CheckoutSuccess";
 import CheckoutSummary from "./CheckoutSummary";
 
 const boxStyle = {
@@ -83,7 +83,7 @@ export default function Checkout() {
     clearCart();
   }
   if (orderID !== "") {
-    return <SuccessPayment orderID={orderID} />;
+    return <CheckoutSuccess orderID={orderID} />;
   }
   return (
     <Grid container justifyContent="center" mt={2}>

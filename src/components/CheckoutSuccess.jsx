@@ -4,7 +4,7 @@ import CheckCircleSharpIcon from '@mui/icons-material/CheckCircleSharp';
 import { Link } from "react-router-dom";
 import StoreRoundedIcon from '@mui/icons-material/StoreRounded';
 
-export default function SuccessPayment({ orderID }) {
+export default function CheckoutSuccess({ orderID }) {
   return (
     <Grid container spacing={2} justifyContent="center" my={2} alignItems="center" mb={10}>
       <Grid item xs={11} xl={10}>

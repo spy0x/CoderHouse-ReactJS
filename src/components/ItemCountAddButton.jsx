@@ -4,7 +4,7 @@ import React, { useState } from "react";
 import AddShoppingCartRoundedIcon from '@mui/icons-material/AddShoppingCartRounded';
 
 
-export default function ItemCount({ stock, onClickAddToCart }) {
+export default function ItemCountAddButton({ stock, onClickAddToCart }) {
   function validateQuantity({ target }) {
     if (target.value > stock) target.value = stock;
     else if (target.value < 0) target.value = 1;

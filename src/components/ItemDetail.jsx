@@ -2,10 +2,10 @@ import { Box, CardMedia, Divider, Grid, Stack, Typography } from "@mui/material"
 import React, { useContext, useState } from "react";
 import { toast } from "react-toastify";
 import { context } from "./CartContext";
-import ItemCount from "./ItemCount";
+import ItemCountAddButton from "./ItemCountAddButton";
 import ItemDetailFinish from "./ItemDetailFinish";
 import Loader from "./Loader";
-import TableItemSpecs from "./TableItemSpecs";
+import ItemDetailDescription from "./ItemDetailDescription";
 
 const boxStyle = {
   width: "90%",
@@ -71,12 +71,12 @@ export default function ItemDetail({ item }) {
                 {author}
               </Typography>
             </Box>
-            <TableItemSpecs itemSpecs={specifications} isbn={isbn} />
+            <ItemDetailDescription itemSpecs={specifications} isbn={isbn} />
             <Typography mt={2} display="block" variant="h6" color="text.secondary" align="center" gutterBottom>
               ${price} USD
             </Typography>
             <Divider />
-            {showItemCount ? <ItemCount stock={stock} onClickAddToCart={handleAddToCart} /> : goToCartButton}
+            {showItemCount ? <ItemCountAddButton stock={stock} onClickAddToCart={handleAddToCart} /> : goToCartButton}
           </Stack>
         </Grid>
       </Grid>
