@@ -7,7 +7,7 @@ import Footer from "./components/Footer";
 import ItemDetailContainer from "./components/ItemDetailContainer";
 import ItemListContainer from "./components/ItemListContainer";
 import MyNavBar from "./components/Navbar";
-import CartContext from "./context/CartContext";
+import CartContext from "./components/CartContext";
 
 function App() {
   return (

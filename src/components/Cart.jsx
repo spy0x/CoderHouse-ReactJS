@@ -22,7 +22,7 @@ import { tableCellClasses } from "@mui/material/TableCell";
 import { Image } from "mui-image";
 import React, { useContext } from "react";
 import { Link } from "react-router-dom";
-import { context } from "../context/CartContext";
+import { context } from "./CartContext";
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {

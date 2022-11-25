@@ -1,7 +1,7 @@
 import { Box, CardMedia, Divider, Grid, Stack, Typography } from "@mui/material";
 import React, { useContext, useState } from "react";
 import { toast } from "react-toastify";
-import { context } from "../context/CartContext";
+import { context } from "./CartContext";
 import ItemCount from "./ItemCount";
 import ItemDetailFinish from "./ItemDetailFinish";
 import Loader from "./Loader";

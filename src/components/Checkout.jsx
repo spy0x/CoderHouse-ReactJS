@@ -11,7 +11,7 @@ import {
 } from "@mui/material";
 import React, { useState, useContext } from "react";
 import { addDoc, collection, getFirestore } from "firebase/firestore";
-import { context } from "../context/CartContext";
+import { context } from "./CartContext";
 import Swal from "sweetalert2";
 import SuccessPayment from "./SuccessPayment";
 import CheckoutSummary from "./CheckoutSummary";
