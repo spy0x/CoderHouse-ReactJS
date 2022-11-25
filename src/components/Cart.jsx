@@ -1,6 +1,6 @@
 import DeleteForeverRoundedIcon from "@mui/icons-material/DeleteForeverRounded";
-import LocalAtmOutlinedIcon from '@mui/icons-material/LocalAtmOutlined';
-import StoreRoundedIcon from '@mui/icons-material/LocalAtmOutlined';
+import LocalAtmOutlinedIcon from "@mui/icons-material/LocalAtmOutlined";
+import StoreRoundedIcon from '@mui/icons-material/StoreRounded';
 import {
   Box,
   Button,
@@ -112,7 +112,11 @@ export default function Cart() {
                       sx={{ minWidth: "25px" }}
                     />
                   </StyledTableCell>
-                  <StyledTableCell align="left">{title}</StyledTableCell>
+                  <StyledTableCell align="left">
+                    <Link to={`/books/isbn/${isbn}`} style={{ textDecoration: "none" }}>
+                      {title}
+                    </Link>
+                  </StyledTableCell>
                   <StyledTableCell align="right">x{quantity}</StyledTableCell>
                   <StyledTableCell align="right">${price * quantity}</StyledTableCell>
                   <StyledTableCell padding="checkbox" align="center">
@@ -135,7 +139,7 @@ export default function Cart() {
               variant="contained"
               color="error"
               size="medium"
-              startIcon={<LocalAtmOutlinedIcon/>}
+              startIcon={<LocalAtmOutlinedIcon />}
               sx={{ textAlign: "center" }}
             >
               CHECKOUT

@@ -1,6 +1,8 @@
 import React from "react";
-import { Grid, Paper, Typography } from "@mui/material";
+import { Grid, Paper, Typography, Button, Stack } from "@mui/material";
 import CheckCircleSharpIcon from '@mui/icons-material/CheckCircleSharp';
+import { Link } from "react-router-dom";
+import StoreRoundedIcon from '@mui/icons-material/StoreRounded';
 
 export default function SuccessPayment({ orderID }) {
   return (
@@ -17,6 +19,19 @@ export default function SuccessPayment({ orderID }) {
           <Typography align="center" display="block" variant="overline" color="initial">
             Order ID: {orderID}
           </Typography>
+          <Stack direction="row" justifyContent="center" alignItems="center" spacing={10}>
+            <Link to="/" style={{ textDecoration: "none" }}>
+              <Button
+                variant="contained"
+                color="error"
+                size="medium"
+                startIcon={<StoreRoundedIcon />}
+                sx={{ textAlign: "center" }}
+              >
+                Continue Shopping
+              </Button>
+            </Link>
+          </Stack>
         </Paper>
       </Grid>
     </Grid>

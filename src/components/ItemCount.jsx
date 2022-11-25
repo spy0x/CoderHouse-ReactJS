@@ -43,7 +43,7 @@ export default function ItemCount({ stock, onClickAddToCart }) {
             />
           </div>
         </Box>
-        <Button size="small" sx={{ padding: "1rem" }} onClick={() => onClickAddToCart(quantity)} startIcon={<AddShoppingCartRoundedIcon />}>
+        <Button size="small" sx={{ padding: "1rem" }} onClick={() => onClickAddToCart(parseInt(quantity))} startIcon={<AddShoppingCartRoundedIcon />}>
           Add to Cart
         </Button>
       </Stack>

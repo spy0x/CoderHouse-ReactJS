@@ -10,7 +10,7 @@ export default function CartContext({ children }) {
 
   useEffect(() => {
     localStorage.setItem("userCart", JSON.stringify(cart));
-    setItemsAmount(cart.reduce((acc, { quantity }) => acc + quantity, 0));
+    setItemsAmount(cart.reduce((acc, { quantity }) => acc + parseInt(quantity), 0));
   }, [cart]);
 
   function posInCart(isbn) {
