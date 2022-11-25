@@ -1,7 +1,7 @@
 import React from "react";
 import { Typography } from "@mui/material";
 
-export default function CheckoutSummary({ cart }) {
+export default function CheckoutBrief({ cart }) {
   return (
     <>
       <Typography align="center" variant="h5" color="initial" sx={{fontWeight: 'bold'}}>

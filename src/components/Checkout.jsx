@@ -14,7 +14,7 @@ import { addDoc, collection, getFirestore, serverTimestamp } from "firebase/fire
 import { context } from "./CartContext";
 import Swal from "sweetalert2";
 import CheckoutSuccess from "./CheckoutSuccess";
-import CheckoutSummary from "./CheckoutSummary";
+import CheckoutBrief from "./CheckoutBrief";
 
 const boxStyle = {
   width: { xs: "100%", sm: "90%" },
@@ -184,7 +184,7 @@ export default function Checkout() {
           </Grid>
           {cart.length > 0 && (
             <Grid item xs={10} md={5}>
-              <CheckoutSummary cart={cart} />
+              <CheckoutBrief cart={cart} />
             </Grid>
           )}
         </Grid>

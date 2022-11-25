@@ -10,10 +10,8 @@ import CartWidget from "./CartWidget";
 const navBarBackground = grey[900];
 const pages = [
   { name: "Store", url: "/" },
-  { name: "NEW", url: "/books/category/new" },
-  { name: "TOP", url: "/books/category/top" },
-  { name: "Sample Author", url: "/books/author/Juza_Unno" },
-  { name: "Sample Book", url: "/books/isbn/9789569673245" },
+  { name: "New", url: "/books/category/new" },
+  { name: "Top", url: "/books/category/top" },
 ];
 
 function MyNavBar() {
@@ -67,7 +65,7 @@ function MyNavBar() {
             >
               {pages.map((page, id) => (
                 <MenuItem key={id}>
-                  <Link to={page.url} style={{ textDecoration: "none" }}>
+                  <Link to={page.url} style={{ textDecoration: "none", color: "inherit" }}>
                     <Typography textAlign="center">{page.name}</Typography>
                   </Link>
                 </MenuItem>
