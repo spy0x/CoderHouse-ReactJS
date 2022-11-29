@@ -7,14 +7,14 @@ import {
   Grid,
   Stack,
   TextField,
-  Typography,
+  Typography
 } from "@mui/material";
-import React, { useState, useContext } from "react";
-import { addDoc, collection, getFirestore, serverTimestamp } from "firebase/firestore";
-import { context } from "./CartContext";
+import { addDoc, collection, doc, getDocs, getFirestore, query, serverTimestamp, updateDoc, where } from "firebase/firestore";
+import React, { useContext, useState } from "react";
 import Swal from "sweetalert2";
-import CheckoutSuccess from "./CheckoutSuccess";
+import { context } from "./CartContext";
 import CheckoutBrief from "./CheckoutBrief";
+import CheckoutSuccess from "./CheckoutSuccess";
 
 const boxStyle = {
   width: { xs: "100%", sm: "90%" },
@@ -81,8 +81,23 @@ export default function Checkout() {
     const result = await addDoc(ordersCollections, order);
     setOrderID(result.id);
     setOpenBackdrop(false);
+    updateStockDB();
     clearInfo();
   }
+
+  function updateStockDB() {
+    const db = getFirestore();
+    cart.forEach(element => {
+      const q = query(collection(db, "product"), where("isbn", "==", element.isbn));
+      const result = getDocs(q);
+      result.then((res) => {
+        const productDB = res.docs.map((e) => ({ id: e.id, ...e.data() }));
+        const orderDoc = doc(db, "product", productDB[0].id);
+        updateDoc(orderDoc, {stock: productDB[0].stock - element.quantity})
+      })
+    });
+  }
+
   function clearInfo() {
     setName("");
     setEmail("");
@@ -170,7 +185,7 @@ export default function Checkout() {
                       onKeyDown={handleNumberVerification}
                       onChange={(e) => setPhone(e.target.value)}
                       value={phone}
-                      inputProps={{ maxLength: 12 }}  
+                      inputProps={{ maxLength: 12 }}
                       InputLabelProps={{ shrink: true }}
                     />
                     <Button type="submit" variant="contained" color="error">

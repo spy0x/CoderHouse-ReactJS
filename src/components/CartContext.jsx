@@ -20,16 +20,15 @@ export default function CartContext({ children }) {
 
   function addItem(product, stock) {
     const pos = posInCart(product.isbn);
-    if (pos === -1) {
+    if (product.quantity > stock){
+      errorAlert();
+      return false;
+    }
+    else if (pos === -1) {
       setCart([...cart, product]);
     } else if (cart[pos].quantity + product.quantity > stock) {
       //IF USER IS TRYING TO BUY A QUANTITY MAYOR THAN STOCK, give FALSE to throw a Sweet Alert Error on ItemDetail.jsx
-      Swal.fire({
-        title: "Error!",
-        text: "Item quantity exceeds stock availability",
-        icon: "error",
-        confirmButtonText: "OK",
-      });
+      errorAlert();
       return false;
     } else {
       const cartAux = [...cart];
@@ -39,6 +38,14 @@ export default function CartContext({ children }) {
     return true;
   }
 
+  function errorAlert(){
+    Swal.fire({
+      title: "Error!",
+      text: "Item quantity exceeds stock availability",
+      icon: "error",
+      confirmButtonText: "OK",
+    });
+  }
   function removeItem(isbn) {
     setCart(cart.filter((product) => product.isbn !== isbn));
   }
