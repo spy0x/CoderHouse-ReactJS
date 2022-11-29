@@ -11,9 +11,10 @@ El sitio permite al usuario ver productos y agregar o borrarlos del carrito (car
 El sitio puede navegarse desde su ruta principal, donde se muestran todos los productos disponibles, o por las categorías que filtran los títulos de alta popularidad (/books/category/top), y produtos nuevos (/books/category/new). Se creó además una ruta dinámica por el ISBN del producto que permite ingresar directamente al detalle del producto (/books/isbn/:id). No se hizo uso del ID autogenerado de Firestore, ya que el ISBN ya es un código único y universal para cada libro.
 Adicionalmente se configuró otra ruta dinámica ingresando el nombre_apellido del autor, lo que permite solo visualizar los libros en venta del autor respectivo (/books/author/:author). No obstante, no se implementó en la interfaz para esta entrega, porque es una feature ideada para implementarse en un sistema de búsqueda para el sitio, lo que está fuera de lo requerido para esta entrega.
 
-#### Funcionalidades elementales:
+#### Funcionalidades a destacar:
 - Productos y Ordenes de Compra se almacenan en base de datos de Firestore con los servicios de Google Firebase.
-- Persistencia de datos para el Cart (almacenado en Local Storage).
+- Persistencia de datos para el Cart del usuario (almacenado en Local Storage).
+- Actualización del stock desde la base de datos de Firestore, una vez concluida la compra.
 
 ------------
 Se hizo uso de las siguientes librerías adicionales a las requeridas para el curso:
