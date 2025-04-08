@@ -5,7 +5,7 @@ Aplicación Web Ecommerce desarrollada con React JS, MUI y Firebase.
 
 ![](https://coderhouse-fvd.web.app/logo192.png)
 
-### **DEPLOY:** [https://coderhouse-fvd.web.app/](https://coderhouse-fvd.web.app/ "https://coderhouse-fvd.web.app/")
+### **DEPLOY:** [https://coderhouse-fvd.web.app/](https://coderhouse-fvd.web.app/ "https://coderhouse-fvd.web.app/") | [[https://coderhouse-fvd.web.app/](https://coder-house-react-js-spy0x.vercel.app)]([https://coderhouse-fvd.web.app/](https://coder-house-react-js-spy0x.vercel.app) "[https://coderhouse-fvd.web.app/](https://coder-house-react-js-spy0x.vercel.app)")
 El sitio permite al usuario ver productos y agregar o borrarlos del carrito (cart) y proceder a finalizar la compra (checkout), previamente llenando un formulario de contacto (con validaciones), para luego entregar un comprobante al usuario de la orden de compra (ID generado por Firestore).
 
 El sitio puede navegarse desde su ruta principal, donde se muestran todos los productos disponibles, o por las categorías que filtran los títulos de alta popularidad (/books/category/top), y produtos nuevos (/books/category/new). Se creó además una ruta dinámica por el ISBN del producto que permite ingresar directamente al detalle del producto (/books/isbn/:id). No se hizo uso del ID autogenerado de Firestore, ya que el ISBN ya es un código único y universal para cada libro.
