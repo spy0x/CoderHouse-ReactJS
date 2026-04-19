@@ -1,26 +1,208 @@
-# Proyecto Final React JS - CoderHouse
-##  Librería Los Tres Primos
-#### Por Francisco Vargas - Comisión 44970
-Aplicación Web Ecommerce desarrollada con React JS, MUI y Firebase.
+# Los Tres Primos Bookstore — CoderHouse ReactJS Final Project
 
-![](https://coderhouse-fvd.web.app/logo192.png)
+Web e-commerce bookstore built with React, Material UI, and Firebase/Firestore.
 
-### **DEPLOY:** [https://coderhouse-fvd.web.app/](https://coderhouse-fvd.web.app/ "https://coderhouse-fvd.web.app/")
-El sitio permite al usuario ver productos y agregar o borrarlos del carrito (cart) y proceder a finalizar la compra (checkout), previamente llenando un formulario de contacto (con validaciones), para luego entregar un comprobante al usuario de la orden de compra (ID generado por Firestore).
+**Author:** Francisco Vargas — Comisión 44970
 
-El sitio puede navegarse desde su ruta principal, donde se muestran todos los productos disponibles, o por las categorías que filtran los títulos de alta popularidad (/books/category/top), y produtos nuevos (/books/category/new). Se creó además una ruta dinámica por el ISBN del producto que permite ingresar directamente al detalle del producto (/books/isbn/:id). No se hizo uso del ID autogenerado de Firestore, ya que el ISBN ya es un código único y universal para cada libro.
-Adicionalmente se configuró otra ruta dinámica ingresando el nombre_apellido del autor, lo que permite solo visualizar los libros en venta del autor respectivo (/books/author/:author). No obstante, no se implementó en la interfaz para esta entrega, porque es una feature ideada para implementarse en un sistema de búsqueda para el sitio, lo que está fuera de lo requerido para esta entrega.
+![Logo](https://coderhouse-fvd.web.app/logo192.png)
 
-#### Funcionalidades a destacar:
-- Productos y Ordenes de Compra se almacenan en base de datos de Firestore con los servicios de Google Firebase.
-- Persistencia de datos para el Cart del usuario (almacenado en Local Storage).
-- Actualización del stock desde la base de datos de Firestore, una vez concluida la compra.
+## Live Demo
 
-------------
-Se hizo uso de las siguientes librerías adicionales a las requeridas para el curso:
-- **[sweetalert2](https://sweetalert2.github.io/ "sweetalert2")**: Para el manejo de las notificaciones de error por validación. Fáciles de implementar y de interfaz simple y agradable.
-- **[react-toastify](https://fkhadra.github.io/react-toastify/ "react-toastify")**: Para el manejo de notificaciones de acciones del usuario (como producto agregado al carrito). Fáciles de implementar y de interfaz simple y agradable.
-- **[mui/material](https://mui.com/ "mui/material")**: Para el uso general de Material UI.
-- **[mui/lab](https://mui.com/material-ui/about-the-lab/ "mui/lab")**: Para el uso de los loading spinners de MUI.
-- **[mui/icons-material](https://mui.com/material-ui/material-icons/ "mui/icons-material")**: Para el uso de todos los íconos de MUI.
-- **[mui/image](https://github.com/benmneb/mui-image "mui/image")**: Para customizar facilmente imágenes como componentes de MUI.
+🌐 **[https://coderhouse-fvd.web.app/](https://coderhouse-fvd.web.app/)**
+
+---
+
+## Overview
+
+This app lets users:
+
+- Browse all books in the store
+- Filter books by category (`new`, `top`)
+- Open a book detail page by ISBN
+- Add or remove items in a shopping cart
+- Persist cart data in the browser's local storage
+- Complete checkout with buyer form validation
+- Generate an order in Firestore and receive a unique Order ID
+- Update product stock in Firestore automatically after purchase
+
+---
+
+## Tech Stack
+
+| Layer | Technology |
+|---|---|
+| Framework | React 18 + React DOM 18 |
+| Build tool | Create React App (`react-scripts`) |
+| Routing | `react-router-dom` v6 |
+| State management | React Context API + `useState` + `localStorage` |
+| UI components | MUI (`@mui/material`, `@mui/icons-material`, `@mui/lab`), `@emotion/*`, `mui-image` |
+| Notifications | `react-toastify`, `sweetalert2` |
+| Backend / database | Firebase + Cloud Firestore |
+
+---
+
+## Routes
+
+| Path | Description |
+|---|---|
+| `/` | Store — all books |
+| `/books/category/new` | New books |
+| `/books/category/top` | Top (popular) books |
+| `/books/isbn/:isbn` | Book detail by ISBN |
+| `/books/author/:author` | Books by author (available, not linked in the UI yet) |
+| `/cart` | Shopping cart |
+| `/checkout` | Checkout |
+
+---
+
+## Getting Started
+
+### Prerequisites
+
+- Node.js (LTS recommended)
+- A package manager: **npm**, **yarn**, or **pnpm**
+
+### Install dependencies
+
+```bash
+npm install
+# or
+yarn install
+# or
+pnpm install
+```
+
+### Run in development mode
+
+```bash
+npm start
+# or
+yarn start
+# or
+pnpm start
+```
+
+Open [http://localhost:3000](http://localhost:3000) in your browser.
+
+---
+
+## Available Scripts
+
+Defined in `package.json`:
+
+| Script | Description |
+|---|---|
+| `npm start` | Starts the development server |
+| `npm run build` | Creates an optimized production build in `build/` |
+| `npm test` | Runs tests in interactive watch mode |
+| `npm run eject` | Ejects CRA configuration (irreversible) |
+
+---
+
+## Production Build
+
+```bash
+npm run build
+```
+
+The static output is generated in `build/` and is ready to be served or deployed.
+
+---
+
+## Environment Variables
+
+There is currently **no `.env` file** in this repository. Firebase configuration is initialized directly in `src/index.js`.
+
+To use environment variables instead (recommended), replace the hardcoded config values with `REACT_APP_*` variables in a `.env` file:
+
+```
+REACT_APP_FIREBASE_API_KEY=...
+REACT_APP_FIREBASE_AUTH_DOMAIN=...
+REACT_APP_FIREBASE_PROJECT_ID=...
+REACT_APP_FIREBASE_STORAGE_BUCKET=...
+REACT_APP_FIREBASE_MESSAGING_SENDER_ID=...
+REACT_APP_FIREBASE_APP_ID=...
+```
+
+> `.env.local` is already in `.gitignore`, so secrets stay out of version control.
+
+---
+
+## Project Structure
+
+```
+.
+├── public/
+│   ├── index.html
+│   ├── favicon.svg
+│   └── ...
+├── src/
+│   ├── assets/
+│   │   └── img/
+│   ├── components/
+│   │   ├── CartContext.jsx        # Global cart state (Context API + localStorage)
+│   │   ├── Navbar.jsx
+│   │   ├── Footer.jsx
+│   │   ├── ItemListContainer.jsx  # Fetches and filters products from Firestore
+│   │   ├── ItemList.jsx
+│   │   ├── Item.jsx
+│   │   ├── ItemDetailContainer.jsx
+│   │   ├── ItemDetail.jsx
+│   │   ├── ItemDetailDescription.jsx
+│   │   ├── ItemDetailFinish.jsx
+│   │   ├── ItemCountAddButton.jsx
+│   │   ├── Cart.jsx
+│   │   ├── CartWidget.jsx
+│   │   ├── Checkout.jsx           # Order creation and stock update in Firestore
+│   │   ├── CheckoutBrief.jsx
+│   │   ├── CheckoutSuccess.jsx
+│   │   ├── Loader.jsx
+│   │   └── ErrorPage.jsx
+│   ├── App.js                     # Routes definition
+│   ├── index.js                   # Firebase initialization + React root
+│   └── index.css
+├── firebase.json                  # Firebase Hosting config
+├── .firebaserc                    # Firebase project alias
+├── .prettierrc                    # Prettier formatting config
+└── package.json
+```
+
+---
+
+## Testing, Linting & Formatting
+
+- **Tests:** `npm test` — uses Jest + Testing Library (CRA default setup)
+- **Linting:** CRA's ESLint config is active during development, but no dedicated `lint` script is defined
+- **Formatting:** `.prettierrc` is configured (2-space indent, double quotes, trailing commas); no `format` script is defined
+
+---
+
+## Deployment
+
+This project is deployed to **Firebase Hosting**:
+
+- Hosting serves the `build/` directory
+- All routes are rewritten to `/index.html` for SPA compatibility (`firebase.json`)
+- Firebase project: `coderhouse-fvd` (`.firebaserc`)
+
+A **GitHub Actions workflow** (`.github/workflows/firebase-hosting-pull-request.yml`) automatically creates a Firebase preview deployment for every pull request.
+
+### Manual deploy with Firebase CLI
+
+```bash
+npm run build
+firebase deploy --only hosting
+```
+
+---
+
+## Additional Libraries
+
+| Library | Purpose |
+|---|---|
+| [sweetalert2](https://sweetalert2.github.io/) | Validation error alerts |
+| [react-toastify](https://fkhadra.github.io/react-toastify/) | Action notifications (e.g. item added to cart) |
+| [@mui/material](https://mui.com/) | Material UI component library |
+| [@mui/lab](https://mui.com/material-ui/about-the-lab/) | Loading spinners and lab components |
+| [@mui/icons-material](https://mui.com/material-ui/material-icons/) | MUI icon set |
+| [mui-image](https://github.com/benmneb/mui-image) | MUI-styled image component |
