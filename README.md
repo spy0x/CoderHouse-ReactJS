@@ -2,13 +2,11 @@
 
 Web e-commerce bookstore built with React, Material UI, and Firebase/Firestore.
 
-**Author:** Francisco Vargas — Comisión 44970
-
-![Logo](https://coderhouse-fvd.web.app/logo192.png)
-
-## Live Demo
+## Demo
 
 🌐 **[https://coderhouse-fvd.web.app/](https://coderhouse-fvd.web.app/)**
+
+![Demo](./demoreact.png)
 
 ---
 
@@ -49,7 +47,7 @@ This app lets users:
 | `/books/category/new` | New books |
 | `/books/category/top` | Top (popular) books |
 | `/books/isbn/:isbn` | Book detail by ISBN |
-| `/books/author/:author` | Books by author (available, not linked in the UI yet) |
+| `/books/author/:author` | Books by author (route exists, not yet surfaced in the UI) |
 | `/cart` | Shopping cart |
 | `/checkout` | Checkout |
 
